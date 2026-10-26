@@ -5,6 +5,16 @@
 
 > Прибыль **не гарантирована**. Прошлые результаты не предсказывают будущие. Начинайте с `--mode paper`, затем `--mode demo`, и только потом — реальные деньги в объёме, который не жалко потерять.
 
+## Дашборд
+
+**https://raw.githack.com/arturwarlord/new_BOT/gh-pages/index.html** — обновляется каждые 4 часа процессом **Paper trading**
+(после включения GitHub Pages из ветки `gh-pages` та же страница доступна на https://arturwarlord.github.io/new_BOT/).
+
+На странице: бумажный счёт (капитал, прибыль/убыток по открытым и закрытым сделкам, просадка), кривая счёта против
+ожидания с ~90% диапазоном по отложенной проверке, предполагаемая прибыль/убыток на 7/14/28 дней, текущие сигналы,
+выбранный портфель, кривые бэктеста против BTC, тепловая карта Sharpe монета × стратегия и профиль монет.
+Локально: `python dashboard.py` → `site/index.html`.
+
 ## Как это работает
 
 1. **`scan_market.py`** берёт самые ликвидные USDT-M перпетуалы Bitget (по объёму за 24ч, без стейблкоинов и токенизированных акций), качает до 4 лет свечей 4H и историю funding.
@@ -84,7 +94,7 @@ python trade.py --mode live --loop --i-understand-the-risk # реальные д
 - **Market scan** — по понедельникам или вручную; отчёт и `portfolio.json` в артефактах.
 - **Backtest + Walk-forward** — вручную для одной монеты.
 - **Signal monitor** — каждые 4 часа печатает сигналы портфеля (без ордеров).
-- **Paper trading** — каждые 4 часа ведёт бумажный счёт (состояние хранится в кэше Actions, сводка — в Summary запуска; `reset` — начать заново). Telegram-уведомления, если заданы секреты `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID`.
+- **Paper trading** — каждые 4 часа ведёт бумажный счёт (состояние хранится в кэше Actions, сводка — в Summary запуска, дашборд публикуется в ветку `gh-pages`; `reset` — начать заново). Telegram-уведомления, если заданы секреты `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID`.
 
 ## Запуск 24/7 на сервере
 
@@ -94,7 +104,7 @@ docker run -d --restart=always -v $PWD/state:/app/state -v $PWD/logs:/app/logs n
 docker run -d --restart=always --env-file .env -v $PWD/state:/app/state new_bot --mode demo         # Bitget demo
 ```
 
-Без Docker — systemd-юнит [`deploy/new_bot.service`](deploy/new_bot.service). Сводка бумажного счёта: `python paper_report.py`.
+Без Docker — systemd-юнит [`deploy/new_bot.service`](deploy/new_bot.service). Сводка бумажного счёта: `python paper_report.py`, дашборд: `python dashboard.py`.
 
 ## Структура
 

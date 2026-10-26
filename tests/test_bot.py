@@ -286,5 +286,48 @@ class BitgetBrokerTests(unittest.TestCase):
         self.assertEqual(h["access-sign"], expect)
 
 
+class DashboardTests(unittest.TestCase):
+    def test_renders_with_and_without_data(self):
+        import dashboard as dash
+        empty = dash.build({}, {}, {}, {"balance": 10_000.0, "positions": {}, "marks": {}, "history": []}, [])
+        self.assertIn("Закрытых сделок пока нет", empty)
+        day = 86_400_000
+        curve = [[i * day, 1 + 0.002 * i + 0.01 * ((-1) ** i)] for i in range(60)]
+        acc = {"balance": 10_050.0, "marks": {"BTCUSDT": 110.0},
+               "positions": {"BTCUSDT": {"side": 1, "qty": 2.0, "entry": 100.0, "stop": 95.0}},
+               "history": [{"t": 1000, "symbol": "ETHUSDT", "action": "open", "side": -1, "qty": 1.0, "price": 50.0,
+                            "fee": 0.1},
+                           {"t": 2000, "symbol": "ETHUSDT", "action": "close", "price": 40.0, "pnl": 9.9, "fee": 0.1}]}
+        pf = {"sleeves": [{"symbol": "BTCUSDT", "strategy": "tsmom", "params": {}, "oos": {"oos_sharpe": 1.0}}],
+              "holdout_check": {"return": 0.1, "sleeves": ["BTCUSDT:tsmom"]}}
+        scan = {"ranking": [{"symbol": "BTCUSDT", "strategy": "tsmom", "oos_sharpe": 1.2, "eligible": True}]}
+        curves = {"holdout": curve, "portfolio_oos": curve, "btc_holdout": curve}
+        out = dash.build(pf, scan, curves, acc, [{"t": 1_000_000, "equity": 10_000.0}], signals=[], now_ms=2_000_000)
+        self.assertIn("<svg", out)
+        self.assertIn("+20.00", out)           # unrealized (110 - 100) * 2
+        self.assertIn("+9.80", out)            # realized pnl net of the opening fee
+        self.assertIn("ETHUSDT", out)
+
+    def test_record_replaces_recent_snapshot(self):
+        import dashboard as dash
+        acc = {"balance": 100.0, "positions": {}, "marks": {}}
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, "h.json")
+            dash.record(acc, p, now_ms=0)
+            dash.record(acc, p, now_ms=60_000)
+            h = dash.record(acc, p, now_ms=4 * 3_600_000)
+        self.assertEqual([x["t"] for x in h], [60_000, 4 * 3_600_000])
+
+    def test_expectation_scales_with_horizon(self):
+        import dashboard as dash
+        curve = [[i, 1.001 ** i * (1.01 if i % 2 else 1.0)] for i in range(100)]
+        e = dash.expectation(curve)
+        m7, lo7, hi7 = e["h"][7]
+        m28, lo28, hi28 = e["h"][28]
+        self.assertAlmostEqual(m28, 4 * m7)
+        self.assertLess(lo28, lo7)
+        self.assertGreater(hi28 - lo28, hi7 - lo7)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -4,7 +4,8 @@
     python scan_market.py --symbols BTCUSDT ETHUSDT SOLUSDT
     python scan_market.py --top 40 --max-sleeves 6
 
-Writes reports/MARKET_ANALYSIS.md, reports/scan.json and config/portfolio.json (used by trade.py).
+Writes reports/MARKET_ANALYSIS.md, reports/scan.json, reports/curves.json (dashboard charts) and
+config/portfolio.json (used by trade.py).
 """
 import argparse
 import datetime as dt
@@ -12,6 +13,7 @@ import json
 import os
 import sys
 import time
+from typing import List
 
 from bot import data as D
 from bot.engine import Costs, Risk
@@ -26,6 +28,26 @@ def pct(x) -> str:
 
 def day(ts: int) -> str:
     return dt.datetime.fromtimestamp(ts / 1000, dt.timezone.utc).strftime("%Y-%m-%d")
+
+
+def daily(ts: List[int], eq: List[float]) -> List[list]:
+    """Last value of every UTC day, rounded, for charts in scan.json / the dashboard."""
+    out = {}
+    for t, v in zip(ts, eq):
+        out[t // 86_400_000] = [t, round(v, 5)]
+    return list(out.values())
+
+
+def btc_curve(results: List[dict], ts: List[int]) -> List[list]:
+    btc = next((r for r in results if r.get("symbol") == "BTCUSDT" and "error" not in r), None)
+    if not btc or not ts:
+        return []
+    idx = {t: i for i, t in enumerate(btc["close_ts"])}
+    inside = [t for t in ts if t in idx]
+    if not inside:
+        return []
+    base = btc["close"][idx[inside[0]]]
+    return daily(inside, [btc["close"][idx[t]] / base for t in inside])
 
 
 def sleeve_json(row: dict, weight: float) -> dict:
@@ -116,8 +138,18 @@ def main() -> int:
         "ranking": [{k: v for k, v in row.items() if k != "_wf"} for row in ranked],
         "errors": {r["symbol"]: r["error"] for r in results if "error" in r},
     }
+    curves = {
+        "portfolio_oos": daily(fts, feq[1:]),
+        "btc_oos": btc_curve(good, fts),
+        "holdout": daily(hts, heq[1:]),
+        "btc_holdout": btc_curve(good, hts),
+        "sleeves": {f"{r['symbol']}:{r['strategy']}": daily(r["_wf"].oos_ts, r["_wf"].oos_equity)
+                    for r in final},
+    }
     with open(os.path.join(a.out, "scan.json"), "w") as f:
         json.dump(scan_json, f, indent=2, default=str)
+    with open(os.path.join(a.out, "curves.json"), "w") as f:
+        json.dump(curves, f, separators=(",", ":"))
 
     L = []
     L.append(f"# Анализ рынка Bitget USDT-M ({a.granularity})\n")
@@ -183,7 +215,7 @@ def main() -> int:
         f.write("\n".join(L) + "\n")
 
     print("\n".join(L[:12 + len(final)]))
-    print(f"\nSaved {a.portfolio}, {a.out}/MARKET_ANALYSIS.md, {a.out}/scan.json in {time.time() - t0:.0f}s")
+    print(f"\nSaved {a.portfolio}, {a.out}/MARKET_ANALYSIS.md, {a.out}/scan.json, {a.out}/curves.json in {time.time() - t0:.0f}s")
     return 0
 
 

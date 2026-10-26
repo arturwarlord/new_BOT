@@ -1,214 +1,214 @@
 {
-  "generated_at": "2026-10-26T13:00:48+00:00",
+  "generated_at": "2026-10-26T13:23:08+00:00",
   "universe": [
     {
       "symbol": "BTCUSDT",
-      "volume_24h_usdt": 2090753033.58535,
+      "volume_24h_usdt": 2152179929.91457,
       "funding_rate": 0.0001,
-      "last": 80306.7,
+      "last": 80086.6,
       "max_lever": 150
     },
     {
       "symbol": "ETHUSDT",
-      "volume_24h_usdt": 1341281989.3423,
-      "funding_rate": 6e-05,
-      "last": 2323.09,
+      "volume_24h_usdt": 1382288194.7188,
+      "funding_rate": 6.3e-05,
+      "last": 2315.56,
       "max_lever": 150
     },
     {
       "symbol": "SOLUSDT",
-      "volume_24h_usdt": 137419822.5259,
+      "volume_24h_usdt": 139760113.207,
       "funding_rate": 7.4e-05,
-      "last": 101.584,
+      "last": 101.219,
       "max_lever": 100
     },
     {
       "symbol": "ZECUSDT",
-      "volume_24h_usdt": 130934242.34335,
+      "volume_24h_usdt": 133632904.10954,
       "funding_rate": 0.0001,
-      "last": 1236.5,
+      "last": 1225.93,
       "max_lever": 75
     },
     {
       "symbol": "XRPUSDT",
-      "volume_24h_usdt": 95230963.2285,
+      "volume_24h_usdt": 96859006.7927,
       "funding_rate": 5.2e-05,
-      "last": 1.2973,
+      "last": 1.2928,
       "max_lever": 125
     },
     {
       "symbol": "NEARUSDT",
-      "volume_24h_usdt": 73926528.7054,
-      "funding_rate": 4.7e-05,
-      "last": 4.5523,
+      "volume_24h_usdt": 74503208.0934,
+      "funding_rate": 5.3e-05,
+      "last": 4.5382,
       "max_lever": 75
     },
     {
       "symbol": "APRUSDT",
-      "volume_24h_usdt": 51834420.14735,
+      "volume_24h_usdt": 51656642.48945,
       "funding_rate": 5e-05,
-      "last": 0.03625,
+      "last": 0.03347,
       "max_lever": 50
     },
     {
-      "symbol": "ENAUSDT",
-      "volume_24h_usdt": 42009573.05119,
-      "funding_rate": 3.5e-05,
-      "last": 0.20782,
-      "max_lever": 75
-    },
-    {
       "symbol": "CAPUSDT",
-      "volume_24h_usdt": 41230134.18347,
+      "volume_24h_usdt": 42469539.71538,
       "funding_rate": 5e-05,
-      "last": 0.0852,
+      "last": 0.08945,
       "max_lever": 10
     },
     {
-      "symbol": "IRYSUSDT",
-      "volume_24h_usdt": 34821675.53529,
-      "funding_rate": -0.000275,
-      "last": 0.02896,
-      "max_lever": 20
+      "symbol": "ENAUSDT",
+      "volume_24h_usdt": 42299253.91993,
+      "funding_rate": 4.2e-05,
+      "last": 0.20589,
+      "max_lever": 75
     },
     {
       "symbol": "DOODUSDT",
-      "volume_24h_usdt": 33185947.426213,
-      "funding_rate": -0.007882,
-      "last": 0.002225,
+      "volume_24h_usdt": 35976572.504248,
+      "funding_rate": -0.007544,
+      "last": 0.002301,
+      "max_lever": 20
+    },
+    {
+      "symbol": "IRYSUSDT",
+      "volume_24h_usdt": 34344152.51806,
+      "funding_rate": -0.00029,
+      "last": 0.02787,
       "max_lever": 20
     },
     {
       "symbol": "HYPEUSDT",
-      "volume_24h_usdt": 32818094.90765,
+      "volume_24h_usdt": 33231405.52497,
       "funding_rate": 4.3e-05,
-      "last": 77.396,
+      "last": 77.48,
       "max_lever": 75
     },
     {
       "symbol": "PEPEUSDT",
-      "volume_24h_usdt": 31206482.7661378,
-      "funding_rate": 8.1e-05,
-      "last": 4.3473e-06,
+      "volume_24h_usdt": 31267239.1360629,
+      "funding_rate": 6e-05,
+      "last": 4.369e-06,
       "max_lever": 75
     },
     {
       "symbol": "JCTUSDT",
-      "volume_24h_usdt": 26621424.487183,
+      "volume_24h_usdt": 26293518.844017,
       "funding_rate": 5e-05,
-      "last": 0.006711,
+      "last": 0.006476,
       "max_lever": 10
     },
     {
       "symbol": "SUIUSDT",
-      "volume_24h_usdt": 25234513.69549,
-      "funding_rate": 8.9e-05,
-      "last": 0.9165,
+      "volume_24h_usdt": 25679591.17256,
+      "funding_rate": 9.1e-05,
+      "last": 0.9126,
       "max_lever": 75
     },
     {
       "symbol": "QNTUSDT",
-      "volume_24h_usdt": 18610778.524,
+      "volume_24h_usdt": 19169337.8401,
       "funding_rate": 0.0001,
-      "last": 218.86,
+      "last": 217.81,
       "max_lever": 75
     },
     {
       "symbol": "ADAUSDT",
-      "volume_24h_usdt": 18581650.693,
-      "funding_rate": 3.4e-05,
-      "last": 0.2053,
+      "volume_24h_usdt": 18869569.8106,
+      "funding_rate": 4.1e-05,
+      "last": 0.2046,
       "max_lever": 75
     },
     {
       "symbol": "WLDUSDT",
-      "volume_24h_usdt": 18280029.2085,
-      "funding_rate": 1.7e-05,
-      "last": 0.4391,
+      "volume_24h_usdt": 18403454.8322,
+      "funding_rate": 1.6e-05,
+      "last": 0.439,
       "max_lever": 75
     },
     {
       "symbol": "ERAUSDT",
-      "volume_24h_usdt": 16735464.14494,
-      "funding_rate": -0.001546,
-      "last": 0.08376,
+      "volume_24h_usdt": 16842359.7546,
+      "funding_rate": -0.001263,
+      "last": 0.08449,
       "max_lever": 25
     },
     {
       "symbol": "QUSDT",
-      "volume_24h_usdt": 12990258.036684,
+      "volume_24h_usdt": 13366646.708957,
       "funding_rate": 5e-05,
-      "last": 0.053983,
+      "last": 0.056,
       "max_lever": 20
     },
     {
       "symbol": "DOGEUSDT",
-      "volume_24h_usdt": 11665094.38785,
-      "funding_rate": -9e-06,
-      "last": 0.07728,
+      "volume_24h_usdt": 12648565.30506,
+      "funding_rate": -1e-05,
+      "last": 0.07711,
       "max_lever": 75
     },
     {
       "symbol": "COMPUSDT",
-      "volume_24h_usdt": 10434221.9796,
+      "volume_24h_usdt": 10444546.6882,
       "funding_rate": 0.0001,
-      "last": 20.82,
+      "last": 20.75,
       "max_lever": 75
     },
     {
       "symbol": "BNBUSDT",
-      "volume_24h_usdt": 10028275.2796,
+      "volume_24h_usdt": 10071873.5301,
       "funding_rate": 0.0001,
-      "last": 742.02,
+      "last": 741.66,
       "max_lever": 75
     },
     {
       "symbol": "ARBUSDT",
-      "volume_24h_usdt": 9809070.1749875,
-      "funding_rate": 5e-05,
-      "last": 0.17077,
+      "volume_24h_usdt": 9972552.852991,
+      "funding_rate": 5.6e-05,
+      "last": 0.169,
       "max_lever": 50
     },
     {
-      "symbol": "XLMUSDT",
-      "volume_24h_usdt": 9228617.26285,
-      "funding_rate": -2.1e-05,
-      "last": 0.16922,
-      "max_lever": 75
-    },
-    {
       "symbol": "UNIUSDT",
-      "volume_24h_usdt": 9079515.385,
+      "volume_24h_usdt": 9204849.412,
       "funding_rate": 0.0001,
-      "last": 7.001,
+      "last": 6.961,
       "max_lever": 75
     },
     {
-      "symbol": "ORDERUSDT",
-      "volume_24h_usdt": 8855109.12713,
-      "funding_rate": -4e-05,
-      "last": 0.03952,
-      "max_lever": 20
+      "symbol": "XLMUSDT",
+      "volume_24h_usdt": 9132061.06807,
+      "funding_rate": -2.5e-05,
+      "last": 0.169,
+      "max_lever": 75
     },
     {
       "symbol": "ONDOUSDT",
-      "volume_24h_usdt": 8841674.71838,
-      "funding_rate": 3.2e-05,
-      "last": 0.4135,
+      "volume_24h_usdt": 8956014.46606,
+      "funding_rate": 3.6e-05,
+      "last": 0.413,
       "max_lever": 50
     },
     {
       "symbol": "BCHUSDT",
-      "volume_24h_usdt": 8755364.9334,
+      "volume_24h_usdt": 8761646.5595,
       "funding_rate": 0.0001,
-      "last": 278.03,
+      "last": 277.55,
       "max_lever": 75
     },
     {
+      "symbol": "ORDERUSDT",
+      "volume_24h_usdt": 8490062.94612,
+      "funding_rate": -0.000138,
+      "last": 0.03965,
+      "max_lever": 20
+    },
+    {
       "symbol": "TUSDT",
-      "volume_24h_usdt": 7927334.52968,
-      "funding_rate": -0.001047,
-      "last": 0.004698,
+      "volume_24h_usdt": 7344443.68585,
+      "funding_rate": -0.001263,
+      "last": 0.004728,
       "max_lever": 50
     }
   ],
@@ -389,17 +389,6 @@
       "return_1y": -0.48112864077669903,
       "avg_funding_8h": 5.931851851851835e-05
     },
-    "XLMUSDT": {
-      "bars": 8760,
-      "years": 4.0,
-      "annual_volatility": 0.8331072639743097,
-      "avg_adx": 27.282665131170788,
-      "avg_efficiency_ratio": 0.15829114342924427,
-      "adx_now": 40.1094317319003,
-      "trend_now": "down",
-      "return_1y": -0.48897880306781805,
-      "avg_funding_8h": 6.819999999999979e-05
-    },
     "UNIUSDT": {
       "bars": 8760,
       "years": 4.0,
@@ -411,16 +400,16 @@
       "return_1y": 0.07634638922888626,
       "avg_funding_8h": 7.261111111111091e-05
     },
-    "ORDERUSDT": {
-      "bars": 4735,
-      "years": 2.16,
-      "annual_volatility": 1.462958714314527,
-      "avg_adx": 25.31168272558983,
-      "avg_efficiency_ratio": 0.15133120269555445,
-      "adx_now": 45.7361899091498,
-      "trend_now": "up",
-      "return_1y": -0.8613086770981508,
-      "avg_funding_8h": -8.859756097561253e-05
+    "XLMUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.8331072639743097,
+      "avg_adx": 27.282665131170788,
+      "avg_efficiency_ratio": 0.15829114342924427,
+      "adx_now": 40.1094317319003,
+      "trend_now": "down",
+      "return_1y": -0.48897880306781805,
+      "avg_funding_8h": 6.819999999999979e-05
     },
     "ONDOUSDT": {
       "bars": 5659,
@@ -443,6 +432,17 @@
       "trend_now": "down",
       "return_1y": -0.48995258935083885,
       "avg_funding_8h": 5.9566666666666524e-05
+    },
+    "ORDERUSDT": {
+      "bars": 4735,
+      "years": 2.16,
+      "annual_volatility": 1.462958714314527,
+      "avg_adx": 25.31168272558983,
+      "avg_efficiency_ratio": 0.15133120269555445,
+      "adx_now": 45.7361899091498,
+      "trend_now": "up",
+      "return_1y": -0.8613086770981508,
+      "avg_funding_8h": -8.859756097561253e-05
     },
     "TUSDT": {
       "bars": 4820,
