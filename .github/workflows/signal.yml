@@ -1,0 +1,15 @@
+name: Signal monitor (read-only)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "5 */4 * * *"   # shortly after each 4H candle closes
+jobs:
+  signal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Print current strategy state (no orders are placed)
+        run: python signal_report.py --symbol BTCUSDT --granularity 4H
