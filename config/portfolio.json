@@ -1,0 +1,139 @@
+{
+  "generated_at": "2026-10-26T12:56:00+00:00",
+  "granularity": "4H",
+  "risk": {
+    "risk_pct": 0.01,
+    "max_leverage": 2.0
+  },
+  "costs": {
+    "fee_rate": 0.0006,
+    "slippage_rate": 0.0005
+  },
+  "sleeves": [
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 126,
+        "atr_stop": 3.0,
+        "allow_short": true
+      },
+      "weight": 0.2,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.1543964444658863,
+        "oos_cagr": 0.1234612364828922,
+        "oos_max_drawdown": 0.07363316050953264,
+        "oos_sharpe": 1.3484427737062243,
+        "oos_trades": 54,
+        "folds": 5,
+        "positive_folds": 0.6
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 252,
+        "atr_stop": 5.0,
+        "allow_short": true
+      },
+      "weight": 0.2,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.24742126305993328,
+        "oos_cagr": 0.08490778729758452,
+        "oos_max_drawdown": 0.053612774037709504,
+        "oos_sharpe": 1.233832952734559,
+        "oos_trades": 90,
+        "folds": 11,
+        "positive_folds": 0.9090909090909091
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "donchian",
+      "params": {
+        "entry_n": 100,
+        "exit_n": 10,
+        "atr_stop": 2.5,
+        "allow_short": true
+      },
+      "weight": 0.2,
+      "selected_as": "donchian",
+      "oos": {
+        "oos_return": 0.2525608940270949,
+        "oos_cagr": 0.08655341728985166,
+        "oos_max_drawdown": 0.07800121995762549,
+        "oos_sharpe": 1.1760352085498016,
+        "oos_trades": 64,
+        "folds": 11,
+        "positive_folds": 0.6363636363636364
+      }
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 126,
+        "atr_stop": 3.0,
+        "allow_short": true
+      },
+      "weight": 0.2,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.20786423378328034,
+        "oos_cagr": 0.08924819030995401,
+        "oos_max_drawdown": 0.07749152850070973,
+        "oos_sharpe": 1.061324130962475,
+        "oos_trades": 81,
+        "folds": 9,
+        "positive_folds": 0.7777777777777778
+      }
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 42,
+        "atr_stop": 3.0,
+        "allow_short": true
+      },
+      "weight": 0.2,
+      "selected_as": "auto",
+      "oos": {
+        "oos_return": 0.16085462608367607,
+        "oos_cagr": 0.05652242053869361,
+        "oos_max_drawdown": 0.08436208757782786,
+        "oos_sharpe": 0.742243696223671,
+        "oos_trades": 94,
+        "folds": 11,
+        "positive_folds": 0.5454545454545454
+      }
+    }
+  ],
+  "backtest_portfolio_oos": {
+    "return": 1.4462099551857737,
+    "cagr": 0.3883178500724276,
+    "max_drawdown": 0.17627019872549332,
+    "sharpe": 1.5822750604111724,
+    "from": "2024-02-04",
+    "to": "2026-10-26",
+    "btc_buy_hold": 0.8730281155192259
+  },
+  "holdout_check": {
+    "from": "2026-04-29",
+    "sleeves": [
+      "ENAUSDT:donchian",
+      "ETHUSDT:tsmom",
+      "BTCUSDT:tsmom",
+      "SUIUSDT:ema_trend",
+      "PEPEUSDT:ema_trend"
+    ],
+    "return": 0.05247984517458071,
+    "cagr": 0.10907614375116426,
+    "max_drawdown": 0.19370707831114037,
+    "sharpe": 0.49285548557064274,
+    "btc_buy_hold": 0.0366117082669728
+  }
+}

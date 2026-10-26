@@ -1,4 +1,4 @@
-"""Market data: Bitget public candles (no API keys needed), CSV cache, synthetic data for tests."""
+"""Market data from Bitget public REST v2 (no API keys needed), CSV cache, synthetic data for tests."""
 from __future__ import annotations
 
 import csv
@@ -10,10 +10,10 @@ import time
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
-from typing import List
+from typing import Dict, List, Optional
 
 BASE_URL = "https://api.bitget.com"
-# Bitget v2 granularity names for USDT-FUTURES candles
+PRODUCT_TYPE = "USDT-FUTURES"
 GRANULARITY_MS = {
     "15m": 15 * 60_000,
     "30m": 30 * 60_000,
@@ -24,6 +24,7 @@ GRANULARITY_MS = {
     "1D": 24 * 3_600_000,
 }
 BARS_PER_YEAR = {k: (365 * 24 * 3_600_000) / v for k, v in GRANULARITY_MS.items()}
+DEFAULT_FUNDING_PER_8H = 0.0001  # 0.01%: Bitget's typical base rate, used when history is missing
 
 
 @dataclass
@@ -54,41 +55,38 @@ def from_rows(rows) -> Candles:
     )
 
 
-def _get(path: str, params: dict) -> dict:
+def _get(path: str, params: dict, retries: int = 4) -> dict:
     url = f"{BASE_URL}{path}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"User-Agent": "new_BOT/0.1"})
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        payload = json.loads(resp.read().decode())
-    if payload.get("code") != "00000":
-        raise RuntimeError(f"Bitget API error: {payload}")
-    return payload
+    req = urllib.request.Request(url, headers={"User-Agent": "new_BOT/0.2"})
+    last: Optional[Exception] = None
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                payload = json.loads(resp.read().decode())
+            if payload.get("code") != "00000":
+                raise RuntimeError(f"Bitget API error: {payload}")
+            return payload
+        except Exception as e:  # network hiccups / 429: back off and retry
+            last = e
+            time.sleep(0.5 * 2 ** attempt)
+    raise RuntimeError(f"GET {path} failed after {retries} attempts: {last}")
 
 
-def fetch_bitget(symbol: str, granularity: str, days: int, product_type: str = "USDT-FUTURES") -> Candles:
-    """Download `days` of CLOSED candles, paging backwards with history-candles.
-
-    NOTE: written from the public v2 docs and not testable offline; if Bitget changes
-    the endpoint or limits, only this function needs adjusting.
-    """
+def fetch_bitget(symbol: str, granularity: str, days: int, product_type: str = PRODUCT_TYPE) -> Candles:
+    """Download `days` of CLOSED candles, paging backwards with history-candles."""
     step = GRANULARITY_MS[granularity]
     now = int(time.time() * 1000)
-    end = now - (now % step)  # start of the current (still open) candle
+    end = now - (now % step)  # open time of the current (still forming) candle
     first_open = end
     start_limit = end - days * 24 * 3_600_000
     rows: list = []
     page = 0
-    while end > start_limit and page < 200:
+    while end > start_limit and page < 400:
         page += 1
-        payload = _get(
-            "/api/v2/mix/market/history-candles",
-            {
-                "symbol": symbol,
-                "productType": product_type,
-                "granularity": granularity,
-                "endTime": end,
-                "limit": 200,
-            },
-        )
+        payload = _get("/api/v2/mix/market/history-candles", {
+            "symbol": symbol, "productType": product_type, "granularity": granularity,
+            "endTime": end, "limit": 200,
+        })
         data = payload.get("data") or []
         if not data:
             break
@@ -97,10 +95,78 @@ def fetch_bitget(symbol: str, granularity: str, days: int, product_type: str = "
         if oldest >= end:
             break
         end = oldest
-        time.sleep(0.12)  # stay well below rate limits
+        time.sleep(0.06)
+    if not rows:
+        raise RuntimeError(f"no candles for {symbol}")
     c = from_rows(rows)
     keep = [i for i, t in enumerate(c.ts) if start_limit <= t < first_open]
     return c.slice(keep[0], keep[-1] + 1) if keep else c
+
+
+def load_or_fetch(symbol: str, granularity: str, days: int, cache_dir: str = "data",
+                  max_age_s: float = 6 * 3600) -> Candles:
+    """Cached download: reuses data/<symbol>_<granularity>.csv when it is fresh and long enough."""
+    path = os.path.join(cache_dir, f"{symbol}_{granularity}.csv")
+    if os.path.exists(path) and time.time() - os.path.getmtime(path) < max_age_s:
+        c = load_csv(path)
+        need = days * 24 * 3_600_000 * 0.97
+        if len(c) and c.ts[-1] - c.ts[0] >= need:
+            return c
+    c = fetch_bitget(symbol, granularity, days)
+    save_csv(c, path)
+    return c
+
+
+def fetch_tickers(product_type: str = PRODUCT_TYPE) -> List[dict]:
+    return _get("/api/v2/mix/market/tickers", {"productType": product_type}).get("data") or []
+
+
+def fetch_contracts(product_type: str = PRODUCT_TYPE, symbol: Optional[str] = None) -> List[dict]:
+    params = {"productType": product_type}
+    if symbol:
+        params["symbol"] = symbol
+    return _get("/api/v2/mix/market/contracts", params).get("data") or []
+
+
+def fetch_funding_history(symbol: str, product_type: str = PRODUCT_TYPE, max_pages: int = 20) -> Dict[int, float]:
+    """{funding_time_ms: rate}. Bitget only serves the last few months of history."""
+    out: Dict[int, float] = {}
+    for page in range(1, max_pages + 1):
+        data = _get("/api/v2/mix/market/history-fund-rate", {
+            "symbol": symbol, "productType": product_type, "pageSize": 100, "pageNo": page,
+        }).get("data") or []
+        if not data:
+            break
+        for r in data:
+            out[int(r["fundingTime"])] = float(r["fundingRate"])
+        time.sleep(0.06)
+    return out
+
+
+def funding_per_bar(c: Candles, history: Dict[int, float], step_ms: int,
+                    interval_h: float = 8.0) -> List[float]:
+    """Funding rate charged during each bar: sum of rates whose time falls in [ts, ts+step).
+    Before the first known funding event, the average historical rate is assumed (or the
+    Bitget default 0.01%/8h when nothing is known), so long-history backtests still pay funding."""
+    known = sorted(history.items())
+    mean = sum(r for _, r in known) / len(known) if known else DEFAULT_FUNDING_PER_8H
+    first_known = known[0][0] if known else None
+    per_bar_assumed = mean * step_ms / (interval_h * 3_600_000)
+    out = [0.0] * len(c)
+    j = 0
+    for i, t in enumerate(c.ts):
+        if first_known is None or t + step_ms <= first_known:
+            out[i] = per_bar_assumed
+            continue
+        while j < len(known) and known[j][0] < t:
+            j += 1
+        k = j
+        s = 0.0
+        while k < len(known) and known[k][0] < t + step_ms:
+            s += known[k][1]
+            k += 1
+        out[i] = s
+    return out
 
 
 def save_csv(c: Candles, path: str) -> None:

@@ -1,0 +1,1508 @@
+{
+  "generated_at": "2026-10-26T12:56:00+00:00",
+  "universe": [
+    {
+      "symbol": "BTCUSDT",
+      "volume_24h_usdt": 2089958410.84967,
+      "funding_rate": 0.0001,
+      "last": 80321.6,
+      "max_lever": 150
+    },
+    {
+      "symbol": "ETHUSDT",
+      "volume_24h_usdt": 1340916031.1088,
+      "funding_rate": 6e-05,
+      "last": 2324.12,
+      "max_lever": 150
+    },
+    {
+      "symbol": "SOLUSDT",
+      "volume_24h_usdt": 137488135.1371,
+      "funding_rate": 7.5e-05,
+      "last": 101.585,
+      "max_lever": 100
+    },
+    {
+      "symbol": "ZECUSDT",
+      "volume_24h_usdt": 131073614.79651,
+      "funding_rate": 0.0001,
+      "last": 1234.37,
+      "max_lever": 75
+    },
+    {
+      "symbol": "XRPUSDT",
+      "volume_24h_usdt": 95200065.7657,
+      "funding_rate": 5.2e-05,
+      "last": 1.297,
+      "max_lever": 125
+    },
+    {
+      "symbol": "NEARUSDT",
+      "volume_24h_usdt": 73932048.8834,
+      "funding_rate": 4.6e-05,
+      "last": 4.5544,
+      "max_lever": 75
+    },
+    {
+      "symbol": "APRUSDT",
+      "volume_24h_usdt": 52050827.18433,
+      "funding_rate": 5e-05,
+      "last": 0.03567,
+      "max_lever": 50
+    },
+    {
+      "symbol": "ENAUSDT",
+      "volume_24h_usdt": 41929528.02956,
+      "funding_rate": 3.6e-05,
+      "last": 0.20711,
+      "max_lever": 75
+    },
+    {
+      "symbol": "CAPUSDT",
+      "volume_24h_usdt": 41295553.5832,
+      "funding_rate": 5e-05,
+      "last": 0.08346,
+      "max_lever": 10
+    },
+    {
+      "symbol": "IRYSUSDT",
+      "volume_24h_usdt": 34613648.41433,
+      "funding_rate": -0.000285,
+      "last": 0.02845,
+      "max_lever": 20
+    },
+    {
+      "symbol": "DOODUSDT",
+      "volume_24h_usdt": 33107154.20641,
+      "funding_rate": -0.007866,
+      "last": 0.002222,
+      "max_lever": 20
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "volume_24h_usdt": 32744706.04605,
+      "funding_rate": 4.2e-05,
+      "last": 77.306,
+      "max_lever": 75
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "volume_24h_usdt": 31231278.439348,
+      "funding_rate": 8.7e-05,
+      "last": 4.343e-06,
+      "max_lever": 75
+    },
+    {
+      "symbol": "JCTUSDT",
+      "volume_24h_usdt": 27031938.283833,
+      "funding_rate": 5e-05,
+      "last": 0.006546,
+      "max_lever": 10
+    },
+    {
+      "symbol": "SUIUSDT",
+      "volume_24h_usdt": 25229299.19458,
+      "funding_rate": 8.8e-05,
+      "last": 0.917,
+      "max_lever": 75
+    }
+  ],
+  "profiles": {
+    "BTCUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.4512617648305672,
+      "avg_adx": 28.40583452584925,
+      "avg_efficiency_ratio": 0.17415723938660874,
+      "adx_now": 37.5480033545603,
+      "trend_now": "down",
+      "return_1y": -0.29269709141944533,
+      "avg_funding_8h": 5.492592592592584e-05
+    },
+    "ETHUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.6098218890960769,
+      "avg_adx": 27.559902271354662,
+      "avg_efficiency_ratio": 0.17316365219745167,
+      "adx_now": 36.51542234154655,
+      "trend_now": "down",
+      "return_1y": -0.42716484682114275,
+      "avg_funding_8h": 6.093703703703697e-05
+    },
+    "SOLUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.8973320953164278,
+      "avg_adx": 27.805762399477583,
+      "avg_efficiency_ratio": 0.17063101216619186,
+      "adx_now": 27.660236145832584,
+      "trend_now": "down",
+      "return_1y": -0.49007798199643937,
+      "avg_funding_8h": 4.447037037037033e-05
+    },
+    "XRPUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.7657348286289477,
+      "avg_adx": 27.071984839930867,
+      "avg_efficiency_ratio": 0.1550414058784322,
+      "adx_now": 23.807779071656665,
+      "trend_now": "down",
+      "return_1y": -0.5100185599030339,
+      "avg_funding_8h": 6.942592592592582e-05
+    },
+    "NEARUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 1.0184791069170294,
+      "avg_adx": 27.359719873590564,
+      "avg_efficiency_ratio": 0.16624279634967007,
+      "adx_now": 26.36152202942859,
+      "trend_now": "down",
+      "return_1y": 0.9423484527342094,
+      "avg_funding_8h": 7.214814814814793e-05
+    },
+    "ENAUSDT": {
+      "bars": 5613,
+      "years": 2.56,
+      "annual_volatility": 1.290457167716368,
+      "avg_adx": 27.940030503466435,
+      "avg_efficiency_ratio": 0.1718005268205189,
+      "adx_now": 15.891990917486494,
+      "trend_now": "up",
+      "return_1y": -0.5866412213740457,
+      "avg_funding_8h": 3.665000000000009e-05
+    },
+    "DOODUSDT": {
+      "bars": 3210,
+      "years": 1.47,
+      "annual_volatility": 1.5187326526056892,
+      "avg_adx": 27.744700428128322,
+      "avg_efficiency_ratio": 0.16236731824830264,
+      "adx_now": 32.665998708490214,
+      "trend_now": "up",
+      "return_1y": -0.699512445470875,
+      "avg_funding_8h": -3.3780918727914e-05
+    },
+    "HYPEUSDT": {
+      "bars": 4058,
+      "years": 1.85,
+      "annual_volatility": 1.0858061125429213,
+      "avg_adx": 25.252825142616828,
+      "avg_efficiency_ratio": 0.1532933381727621,
+      "adx_now": 28.98334502492114,
+      "trend_now": "down",
+      "return_1y": 0.6339168675208255,
+      "avg_funding_8h": 2.57425925925925e-05
+    },
+    "PEPEUSDT": {
+      "bars": 7620,
+      "years": 3.48,
+      "annual_volatility": 1.2970991917970598,
+      "avg_adx": 27.44676014244609,
+      "avg_efficiency_ratio": 0.16896667927445386,
+      "adx_now": 16.068718518528136,
+      "trend_now": "up",
+      "return_1y": -0.40314121824638083,
+      "avg_funding_8h": 3.949629629629626e-05
+    },
+    "SUIUSDT": {
+      "bars": 7627,
+      "years": 3.48,
+      "annual_volatility": 1.0439967225495912,
+      "avg_adx": 26.925200281755362,
+      "avg_efficiency_ratio": 0.16191417148053736,
+      "adx_now": 37.686212903884176,
+      "trend_now": "down",
+      "return_1y": -0.651880753058828,
+      "avg_funding_8h": 6.093703703703693e-05
+    }
+  },
+  "ranking": [
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.06005655941076138,
+      "oos_cagr": 0.3544379920246499,
+      "oos_max_drawdown": 0.04263433306104314,
+      "oos_sharpe": 2.1774518593450267,
+      "oos_trades": 9,
+      "folds": 1,
+      "positive_folds": 1.0,
+      "eligible": false,
+      "rejected_because": "few trades, short history",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 4.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.09466436540821555,
+      "oos_cagr": 0.16893368061127312,
+      "oos_max_drawdown": 0.042957658070106056,
+      "oos_sharpe": 1.6222474197371581,
+      "oos_trades": 22,
+      "folds": 3,
+      "positive_folds": 0.6666666666666666,
+      "eligible": false,
+      "rejected_because": "short history",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 42,
+          "atr_stop": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.1543964444658863,
+      "oos_cagr": 0.1234612364828922,
+      "oos_max_drawdown": 0.07363316050953264,
+      "oos_sharpe": 1.3484427737062243,
+      "oos_trades": 54,
+      "folds": 5,
+      "positive_folds": 0.6,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.14090865862124935,
+      "oos_cagr": 0.11280643730335682,
+      "oos_max_drawdown": 0.0650167103342139,
+      "oos_sharpe": 1.3167145779444107,
+      "oos_trades": 51,
+      "folds": 5,
+      "positive_folds": 0.6,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.24742126305993328,
+      "oos_cagr": 0.08490778729758452,
+      "oos_max_drawdown": 0.053612774037709504,
+      "oos_sharpe": 1.233832952734559,
+      "oos_trades": 90,
+      "folds": 11,
+      "positive_folds": 0.9090909090909091,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "auto",
+      "oos_return": 0.08586026167381511,
+      "oos_cagr": 0.15275637388178387,
+      "oos_max_drawdown": 0.07530562525920792,
+      "oos_sharpe": 1.2242956828052116,
+      "oos_trades": 25,
+      "folds": 3,
+      "positive_folds": 0.6666666666666666,
+      "eligible": false,
+      "rejected_because": "short history",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 3.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.031203640178518066,
+      "oos_cagr": 0.17331988820302846,
+      "oos_max_drawdown": 0.056029035318912054,
+      "oos_sharpe": 1.2172037354053196,
+      "oos_trades": 6,
+      "folds": 1,
+      "positive_folds": 1.0,
+      "eligible": false,
+      "rejected_because": "few trades, short history",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.2525608940270949,
+      "oos_cagr": 0.08655341728985166,
+      "oos_max_drawdown": 0.07800121995762549,
+      "oos_sharpe": 1.1760352085498016,
+      "oos_trades": 64,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.08142152509405887,
+      "oos_cagr": 0.14463629006057332,
+      "oos_max_drawdown": 0.07530562525920803,
+      "oos_sharpe": 1.1646347539534372,
+      "oos_trades": 28,
+      "folds": 3,
+      "positive_folds": 0.6666666666666666,
+      "eligible": false,
+      "rejected_because": "short history",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 2.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.0702938779561284,
+      "oos_cagr": 0.12438596005834501,
+      "oos_max_drawdown": 0.050046424410381214,
+      "oos_sharpe": 1.1299142657225134,
+      "oos_trades": 20,
+      "folds": 3,
+      "positive_folds": 0.6666666666666666,
+      "eligible": false,
+      "rejected_because": "short history",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 3.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.11958613340184354,
+      "oos_cagr": 0.0959137103578469,
+      "oos_max_drawdown": 0.061400566872149454,
+      "oos_sharpe": 1.127918900641943,
+      "oos_trades": 38,
+      "folds": 5,
+      "positive_folds": 0.6,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "auto",
+      "oos_return": 0.12914239697518304,
+      "oos_cagr": 0.10349209918147118,
+      "oos_max_drawdown": 0.0738211754870376,
+      "oos_sharpe": 1.1198849118117082,
+      "oos_trades": 53,
+      "folds": 5,
+      "positive_folds": 0.6,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.20786423378328034,
+      "oos_cagr": 0.08924819030995401,
+      "oos_max_drawdown": 0.07749152850070973,
+      "oos_sharpe": 1.061324130962475,
+      "oos_trades": 81,
+      "folds": 9,
+      "positive_folds": 0.7777777777777778,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.15217915757939582,
+      "oos_cagr": 0.12171129514132772,
+      "oos_max_drawdown": 0.09798723045695083,
+      "oos_sharpe": 1.0092499649889253,
+      "oos_trades": 62,
+      "folds": 5,
+      "positive_folds": 0.2,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.19461202605121186,
+      "oos_cagr": 0.06774548805174496,
+      "oos_max_drawdown": 0.09561152478694035,
+      "oos_sharpe": 0.9242466941552064,
+      "oos_trades": 74,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.18192388172837148,
+      "oos_cagr": 0.06355093478789953,
+      "oos_max_drawdown": 0.11107108814511633,
+      "oos_sharpe": 0.8327272048438206,
+      "oos_trades": 94,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "auto",
+      "oos_return": 0.15578809279956984,
+      "oos_cagr": 0.05482027876106166,
+      "oos_max_drawdown": 0.07543725224633634,
+      "oos_sharpe": 0.7923386151559679,
+      "oos_trades": 94,
+      "folds": 11,
+      "positive_folds": 0.7272727272727273,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "auto",
+      "oos_return": 0.16085462608367607,
+      "oos_cagr": 0.05652242053869361,
+      "oos_max_drawdown": 0.08436208757782786,
+      "oos_sharpe": 0.742243696223671,
+      "oos_trades": 94,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 42,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "auto",
+      "oos_return": 0.1363874885390992,
+      "oos_cagr": 0.04825857746580242,
+      "oos_max_drawdown": 0.08607810267384394,
+      "oos_sharpe": 0.7121335961432899,
+      "oos_trades": 62,
+      "folds": 11,
+      "positive_folds": 0.7272727272727273,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.11711676898185241,
+      "oos_cagr": 0.05141121840281149,
+      "oos_max_drawdown": 0.06952750583273169,
+      "oos_sharpe": 0.7074606183980281,
+      "oos_trades": 60,
+      "folds": 9,
+      "positive_folds": 0.6666666666666666,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 200,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.17723996938838438,
+      "oos_cagr": 0.06199530494373828,
+      "oos_max_drawdown": 0.1251600363764572,
+      "oos_sharpe": 0.6932554167469999,
+      "oos_trades": 138,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.10214086785180787,
+      "oos_cagr": 0.036500808973052745,
+      "oos_max_drawdown": 0.04971861868219236,
+      "oos_sharpe": 0.6675096023697418,
+      "oos_trades": 34,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.038171849225963284,
+      "oos_cagr": 0.017102078935840925,
+      "oos_max_drawdown": 0.027121425584416697,
+      "oos_sharpe": 0.6591797166793624,
+      "oos_trades": 11,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.5,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.009756917724247138,
+      "oos_cagr": 0.051805811762762444,
+      "oos_max_drawdown": 0.02493580486399696,
+      "oos_sharpe": 0.6399823755381296,
+      "oos_trades": 3,
+      "folds": 1,
+      "positive_folds": 1.0,
+      "eligible": false,
+      "rejected_because": "few trades, short history",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.006186994908438548,
+      "oos_cagr": 0.0022762402257880954,
+      "oos_max_drawdown": 0.0019634285930667057,
+      "oos_sharpe": 0.5636712846795378,
+      "oos_trades": 1,
+      "folds": 11,
+      "positive_folds": 0.09090909090909091,
+      "eligible": false,
+      "rejected_because": "few trades, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.06748000443150359,
+      "oos_cagr": 0.030044781867823334,
+      "oos_max_drawdown": 0.05321356952280149,
+      "oos_sharpe": 0.5398026133934751,
+      "oos_trades": 30,
+      "folds": 9,
+      "positive_folds": 0.4444444444444444,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.11112454428717533,
+      "oos_cagr": 0.039607207512245335,
+      "oos_max_drawdown": 0.083892373619504,
+      "oos_sharpe": 0.5005817573311517,
+      "oos_trades": 164,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 42,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.06561218993700169,
+      "oos_cagr": 0.029227362308917648,
+      "oos_max_drawdown": 0.06171893827486601,
+      "oos_sharpe": 0.4525624963711536,
+      "oos_trades": 116,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.08095321725515991,
+      "oos_cagr": 0.029110623739897257,
+      "oos_max_drawdown": 0.08887213120279315,
+      "oos_sharpe": 0.40033758377646234,
+      "oos_trades": 113,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 20,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.05905468698398697,
+      "oos_cagr": 0.021375733833992827,
+      "oos_max_drawdown": 0.09721169852270671,
+      "oos_sharpe": 0.3931571192852629,
+      "oos_trades": 35,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.0777269091306283,
+      "oos_cagr": 0.027977296716456213,
+      "oos_max_drawdown": 0.12904626795926838,
+      "oos_sharpe": 0.39074604191002577,
+      "oos_trades": 109,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.06663914875257881,
+      "oos_cagr": 0.024066012847896445,
+      "oos_max_drawdown": 0.082976307467478,
+      "oos_sharpe": 0.3777475374584545,
+      "oos_trades": 132,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.060448348899088566,
+      "oos_cagr": 0.026963404139233482,
+      "oos_max_drawdown": 0.11336779957093047,
+      "oos_sharpe": 0.33114430715616777,
+      "oos_trades": 96,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 50,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "auto",
+      "oos_return": 0.05431217452749637,
+      "oos_cagr": 0.024229769598864914,
+      "oos_max_drawdown": 0.11762885361382389,
+      "oos_sharpe": 0.32837139950670174,
+      "oos_trades": 79,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.05276334736756061,
+      "oos_cagr": 0.019134892179953455,
+      "oos_max_drawdown": 0.06210761757102885,
+      "oos_sharpe": 0.3140573476821556,
+      "oos_trades": 82,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "auto",
+      "oos_return": 0.048869707733316003,
+      "oos_cagr": 0.021865030495135773,
+      "oos_max_drawdown": 0.10115580332734611,
+      "oos_sharpe": 0.3079923612056743,
+      "oos_trades": 111,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.021271725642229677,
+      "oos_cagr": 0.007789230576265904,
+      "oos_max_drawdown": 0.03845767807530334,
+      "oos_sharpe": 0.2449218445723926,
+      "oos_trades": 27,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.04108031490211461,
+      "oos_cagr": 0.01839093634714084,
+      "oos_max_drawdown": 0.1374847170863757,
+      "oos_sharpe": 0.22463183724431854,
+      "oos_trades": 153,
+      "folds": 9,
+      "positive_folds": 0.3333333333333333,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.027076370522554294,
+      "oos_cagr": 0.009896941651209135,
+      "oos_max_drawdown": 0.06964477695501069,
+      "oos_sharpe": 0.18744496554998555,
+      "oos_trades": 69,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 50,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.001646649341870754,
+      "oos_cagr": 0.00859539102892426,
+      "oos_max_drawdown": 0.02912921034421131,
+      "oos_sharpe": 0.14435437600128304,
+      "oos_trades": 9,
+      "folds": 1,
+      "positive_folds": 1.0,
+      "eligible": false,
+      "rejected_because": "few trades, low Sharpe, short history",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 50,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.01002473842786955,
+      "oos_cagr": 0.003683735963727619,
+      "oos_max_drawdown": 0.09566184790327782,
+      "oos_sharpe": 0.09055695490838074,
+      "oos_trades": 66,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.003218192969793643,
+      "oos_cagr": 0.0014554869289229444,
+      "oos_max_drawdown": 0.10185149626704683,
+      "oos_sharpe": 0.05790204280848735,
+      "oos_trades": 84,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.003989592737176029,
+      "oos_cagr": 0.0014688146269021818,
+      "oos_max_drawdown": 0.10109322400043402,
+      "oos_sharpe": 0.05459196633582833,
+      "oos_trades": 82,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 50,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.002360513855926394,
+      "oos_cagr": 0.0008694963860009786,
+      "oos_max_drawdown": 0.08381424239470622,
+      "oos_sharpe": 0.048518056211967114,
+      "oos_trades": 122,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.0006905369254558424,
+      "oos_cagr": -0.00031309488953590314,
+      "oos_max_drawdown": 0.11713416182711786,
+      "oos_sharpe": 0.0460716986984769,
+      "oos_trades": 116,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XRPUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.005540755955155241,
+      "oos_cagr": -0.002046043483215132,
+      "oos_max_drawdown": 0.08574463723905724,
+      "oos_sharpe": 0.010897559606141324,
+      "oos_trades": 96,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.0,
+      "oos_cagr": 0.0,
+      "oos_max_drawdown": 0.0,
+      "oos_sharpe": 0.0,
+      "oos_trades": 0,
+      "folds": 3,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, short history, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.014071341906378043,
+      "oos_cagr": -0.005210265331634378,
+      "oos_max_drawdown": 0.17340720077442526,
+      "oos_sharpe": -0.024630724258609068,
+      "oos_trades": 120,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "auto",
+      "oos_return": -0.015402884028092534,
+      "oos_cagr": -0.005705727540822214,
+      "oos_max_drawdown": 0.10623413613772913,
+      "oos_sharpe": -0.03576729280929599,
+      "oos_trades": 125,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.030227936549008128,
+      "oos_cagr": -0.011250881558017123,
+      "oos_max_drawdown": 0.21419229689399558,
+      "oos_sharpe": -0.08217684830586387,
+      "oos_trades": 153,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 4.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "HYPEUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.010180263328056882,
+      "oos_cagr": -0.017503811799742808,
+      "oos_max_drawdown": 0.06440452043246336,
+      "oos_sharpe": -0.13901930412843727,
+      "oos_trades": 30,
+      "folds": 3,
+      "positive_folds": 0.3333333333333333,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, short history, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.047481761307105685,
+      "oos_cagr": -0.017772307445839353,
+      "oos_max_drawdown": 0.1535348509000787,
+      "oos_sharpe": -0.19212400679227903,
+      "oos_trades": 117,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.01961389331639496,
+      "oos_cagr": -0.007275419658271609,
+      "oos_max_drawdown": 0.03197446732588647,
+      "oos_sharpe": -0.22962256198002404,
+      "oos_trades": 25,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.5,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "PEPEUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.011268366090919857,
+      "oos_cagr": -0.005124027307630841,
+      "oos_max_drawdown": 0.03809475736122819,
+      "oos_sharpe": -0.261533569613778,
+      "oos_trades": 9,
+      "folds": 9,
+      "positive_folds": 0.1111111111111111,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "SOLUSDT",
+      "strategy": "auto",
+      "oos_return": -0.0705161284358482,
+      "oos_cagr": -0.02659592274292899,
+      "oos_max_drawdown": 0.18255754259266682,
+      "oos_sharpe": -0.3121020266736983,
+      "oos_trades": 141,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.01370977817890684,
+      "oos_cagr": -0.01113053136268305,
+      "oos_max_drawdown": 0.051463407450062205,
+      "oos_sharpe": -0.3159908325613038,
+      "oos_trades": 17,
+      "folds": 5,
+      "positive_folds": 0.2,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.028847245871982397,
+      "oos_cagr": -0.010732198207916599,
+      "oos_max_drawdown": 0.05018319450378694,
+      "oos_sharpe": -0.3908741435332533,
+      "oos_trades": 16,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 25,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "NEARUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.047546043109093605,
+      "oos_cagr": -0.01779674291781308,
+      "oos_max_drawdown": 0.056909884859059956,
+      "oos_sharpe": -0.7204567224178947,
+      "oos_trades": 17,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": null
+    },
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.014058676689203464,
+      "oos_cagr": -0.07100393087293122,
+      "oos_max_drawdown": 0.016115197327221314,
+      "oos_sharpe": -1.6914284523711656,
+      "oos_trades": 3,
+      "folds": 1,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, short history, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "DOODUSDT",
+      "strategy": "auto",
+      "oos_return": -0.014058676689203464,
+      "oos_cagr": -0.07100393087293122,
+      "oos_max_drawdown": 0.016115197327221314,
+      "oos_sharpe": -1.6914284523711656,
+      "oos_trades": 3,
+      "folds": 1,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, short history, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    }
+  ],
+  "errors": {}
+}

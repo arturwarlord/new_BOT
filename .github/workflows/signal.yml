@@ -11,5 +11,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Print current strategy state (no orders are placed)
-        run: python signal_report.py --symbol BTCUSDT --granularity 4H
+      - name: What every portfolio slot wants now (no orders are placed)
+        run: python trade.py --mode signal
