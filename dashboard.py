@@ -179,7 +179,7 @@ def line_chart(series: List[Tuple[str, str, List[list]]], y_fmt=lambda v: f"{v:g
     x1 = x1 if x1 > x0 else x0 + DAY_MS
     sx = lambda x: L + (x - x0) / (x1 - x0) * (W - L - R)  # noqa: E731
     sy = lambda y: T + (y1 - y) / (y1 - y0) * (H - T - B)  # noqa: E731
-    g = [f'<svg viewBox="0 0 {W} {H}" class="chart" preserveAspectRatio="none" role="img">']
+    g = ['<div class="wrap">', f'<svg viewBox="0 0 {W} {H}" class="chart" preserveAspectRatio="none" role="img">']
     for t in nice_ticks(y0, y1):
         g.append(f'<line x1="{L}" x2="{W - R}" y1="{sy(t):.1f}" y2="{sy(t):.1f}" class="grid"/>'
                  f'<text x="{L - 6}" y="{sy(t) + 4:.1f}" class="yl">{esc(y_fmt(t))}</text>')
@@ -204,7 +204,7 @@ def line_chart(series: List[Tuple[str, str, List[list]]], y_fmt=lambda v: f"{v:g
                  f'<title>{esc(label.lstrip("~"))}: {esc(y_fmt(s[-1][1]))}</title></polyline>')
         if len(s) == 1:
             g.append(f'<circle cx="{sx(s[0][0]):.1f}" cy="{sy(s[0][1]):.1f}" r="4" fill="{color}"/>')
-    g.append("</svg>")
+    g.append("</svg></div>")
     legend = "".join(f'<span><i style="background:{c}"></i>{esc(lbl.lstrip("~"))}</span>' for lbl, c, s in series if s)
     return "".join(g) + f'<div class="legend">{legend}</div>'
 
@@ -223,14 +223,15 @@ main{padding:16px 24px 40px;max-width:1280px}section{background:var(--card);bord
 .kpi{background:#1d2538;border-radius:8px;padding:10px 12px}.kpi b{display:block;font-size:20px;margin-top:2px}.kpi span{color:var(--mut);font-size:12px}
 table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 th:first-child,td:first-child,td.l,th.l{text-align:left}th{color:var(--mut);font-weight:500;position:sticky;top:38px;background:var(--card)}
-.scroll{overflow-x:auto;max-height:560px;overflow-y:auto}
+.wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}.scroll{overflow-x:auto;max-height:560px;overflow-y:auto}
 .chart{width:100%;height:auto;display:block}.chart .grid{stroke:var(--line)}.chart .base{stroke:#5b6680;stroke-dasharray:3 3}
 .chart text{fill:var(--mut);font-size:11px}.chart .yl{text-anchor:end}.chart .xl{text-anchor:middle}.chart .band{fill:#4ea1ff22}
 .legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:12px;margin-top:4px}.legend i{display:inline-block;width:12px;height:3px;margin-right:6px;vertical-align:middle}
 .empty{color:var(--mut);padding:30px;text-align:center;border:1px dashed var(--line);border-radius:8px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:18px}.grid2>div{min-width:0}
 .tag{display:inline-block;padding:1px 7px;border-radius:9px;font-size:12px;background:#273046}.tag.long{background:#1d4d3a}.tag.short{background:#5a2730}
 .heat td{text-align:center}code{color:#c3cbe0;font-size:12px}
+@media(max-width:700px){header{padding:14px 12px 6px}nav{padding:0 12px 6px;gap:10px;font-size:13px}main{padding:10px 8px 30px}section{padding:12px 10px}.kpis{grid-template-columns:repeat(2,1fr)}.kpi b{font-size:17px}.chart{min-width:640px}}
 """
 
 
@@ -247,7 +248,7 @@ def table(head: List[str], rows: List[List[str]], scroll: bool = False) -> str:
     h = "".join(f"<th>{esc(x)}</th>" for x in head)
     b = "".join("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>" for r in rows)
     t = f"<table><thead><tr>{h}</tr></thead><tbody>{b}</tbody></table>"
-    return f'<div class="scroll">{t}</div>' if scroll else t
+    return f'<div class="{"scroll" if scroll else "wrap"}">{t}</div>'
 
 
 def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signals: Optional[List[dict]] = None,
