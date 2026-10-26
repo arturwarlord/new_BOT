@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>new_BOT — дашборд</title>
+<style>body{margin:0;background:#0f1420;color:#8b95a8;font:15px system-ui,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh}a{color:#4ea1ff}</style>
+</head>
+<body>
+<div id="msg">Загружаю дашборд…</div>
+<script>
+// GitHub Pages serves the main branch; the dashboard itself is rebuilt every 4h on the gh-pages branch.
+var SRC = "https://raw.githubusercontent.com/arturwarlord/new_BOT/gh-pages/index.html";
+fetch(SRC + "?t=" + Date.now(), {cache: "no-store"})
+  .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+  .then(function (html) { document.open(); document.write(html); document.close(); })
+  .catch(function () {
+    document.getElementById("msg").innerHTML =
+      'Не удалось загрузить дашборд. Откройте <a href="https://raw.githack.com/arturwarlord/new_BOT/gh-pages/index.html">копию</a>.';
+  });
+</script>
+</body>
+</html>
