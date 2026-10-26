@@ -1,110 +1,215 @@
 {
-  "generated_at": "2026-10-26T12:56:00+00:00",
+  "generated_at": "2026-10-26T13:00:48+00:00",
   "universe": [
     {
       "symbol": "BTCUSDT",
-      "volume_24h_usdt": 2089958410.84967,
+      "volume_24h_usdt": 2090753033.58535,
       "funding_rate": 0.0001,
-      "last": 80321.6,
+      "last": 80306.7,
       "max_lever": 150
     },
     {
       "symbol": "ETHUSDT",
-      "volume_24h_usdt": 1340916031.1088,
+      "volume_24h_usdt": 1341281989.3423,
       "funding_rate": 6e-05,
-      "last": 2324.12,
+      "last": 2323.09,
       "max_lever": 150
     },
     {
       "symbol": "SOLUSDT",
-      "volume_24h_usdt": 137488135.1371,
-      "funding_rate": 7.5e-05,
-      "last": 101.585,
+      "volume_24h_usdt": 137419822.5259,
+      "funding_rate": 7.4e-05,
+      "last": 101.584,
       "max_lever": 100
     },
     {
       "symbol": "ZECUSDT",
-      "volume_24h_usdt": 131073614.79651,
+      "volume_24h_usdt": 130934242.34335,
       "funding_rate": 0.0001,
-      "last": 1234.37,
+      "last": 1236.5,
       "max_lever": 75
     },
     {
       "symbol": "XRPUSDT",
-      "volume_24h_usdt": 95200065.7657,
+      "volume_24h_usdt": 95230963.2285,
       "funding_rate": 5.2e-05,
-      "last": 1.297,
+      "last": 1.2973,
       "max_lever": 125
     },
     {
       "symbol": "NEARUSDT",
-      "volume_24h_usdt": 73932048.8834,
-      "funding_rate": 4.6e-05,
-      "last": 4.5544,
+      "volume_24h_usdt": 73926528.7054,
+      "funding_rate": 4.7e-05,
+      "last": 4.5523,
       "max_lever": 75
     },
     {
       "symbol": "APRUSDT",
-      "volume_24h_usdt": 52050827.18433,
+      "volume_24h_usdt": 51834420.14735,
       "funding_rate": 5e-05,
-      "last": 0.03567,
+      "last": 0.03625,
       "max_lever": 50
     },
     {
       "symbol": "ENAUSDT",
-      "volume_24h_usdt": 41929528.02956,
-      "funding_rate": 3.6e-05,
-      "last": 0.20711,
+      "volume_24h_usdt": 42009573.05119,
+      "funding_rate": 3.5e-05,
+      "last": 0.20782,
       "max_lever": 75
     },
     {
       "symbol": "CAPUSDT",
-      "volume_24h_usdt": 41295553.5832,
+      "volume_24h_usdt": 41230134.18347,
       "funding_rate": 5e-05,
-      "last": 0.08346,
+      "last": 0.0852,
       "max_lever": 10
     },
     {
       "symbol": "IRYSUSDT",
-      "volume_24h_usdt": 34613648.41433,
-      "funding_rate": -0.000285,
-      "last": 0.02845,
+      "volume_24h_usdt": 34821675.53529,
+      "funding_rate": -0.000275,
+      "last": 0.02896,
       "max_lever": 20
     },
     {
       "symbol": "DOODUSDT",
-      "volume_24h_usdt": 33107154.20641,
-      "funding_rate": -0.007866,
-      "last": 0.002222,
+      "volume_24h_usdt": 33185947.426213,
+      "funding_rate": -0.007882,
+      "last": 0.002225,
       "max_lever": 20
     },
     {
       "symbol": "HYPEUSDT",
-      "volume_24h_usdt": 32744706.04605,
-      "funding_rate": 4.2e-05,
-      "last": 77.306,
+      "volume_24h_usdt": 32818094.90765,
+      "funding_rate": 4.3e-05,
+      "last": 77.396,
       "max_lever": 75
     },
     {
       "symbol": "PEPEUSDT",
-      "volume_24h_usdt": 31231278.439348,
-      "funding_rate": 8.7e-05,
-      "last": 4.343e-06,
+      "volume_24h_usdt": 31206482.7661378,
+      "funding_rate": 8.1e-05,
+      "last": 4.3473e-06,
       "max_lever": 75
     },
     {
       "symbol": "JCTUSDT",
-      "volume_24h_usdt": 27031938.283833,
+      "volume_24h_usdt": 26621424.487183,
       "funding_rate": 5e-05,
-      "last": 0.006546,
+      "last": 0.006711,
       "max_lever": 10
     },
     {
       "symbol": "SUIUSDT",
-      "volume_24h_usdt": 25229299.19458,
-      "funding_rate": 8.8e-05,
-      "last": 0.917,
+      "volume_24h_usdt": 25234513.69549,
+      "funding_rate": 8.9e-05,
+      "last": 0.9165,
       "max_lever": 75
+    },
+    {
+      "symbol": "QNTUSDT",
+      "volume_24h_usdt": 18610778.524,
+      "funding_rate": 0.0001,
+      "last": 218.86,
+      "max_lever": 75
+    },
+    {
+      "symbol": "ADAUSDT",
+      "volume_24h_usdt": 18581650.693,
+      "funding_rate": 3.4e-05,
+      "last": 0.2053,
+      "max_lever": 75
+    },
+    {
+      "symbol": "WLDUSDT",
+      "volume_24h_usdt": 18280029.2085,
+      "funding_rate": 1.7e-05,
+      "last": 0.4391,
+      "max_lever": 75
+    },
+    {
+      "symbol": "ERAUSDT",
+      "volume_24h_usdt": 16735464.14494,
+      "funding_rate": -0.001546,
+      "last": 0.08376,
+      "max_lever": 25
+    },
+    {
+      "symbol": "QUSDT",
+      "volume_24h_usdt": 12990258.036684,
+      "funding_rate": 5e-05,
+      "last": 0.053983,
+      "max_lever": 20
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "volume_24h_usdt": 11665094.38785,
+      "funding_rate": -9e-06,
+      "last": 0.07728,
+      "max_lever": 75
+    },
+    {
+      "symbol": "COMPUSDT",
+      "volume_24h_usdt": 10434221.9796,
+      "funding_rate": 0.0001,
+      "last": 20.82,
+      "max_lever": 75
+    },
+    {
+      "symbol": "BNBUSDT",
+      "volume_24h_usdt": 10028275.2796,
+      "funding_rate": 0.0001,
+      "last": 742.02,
+      "max_lever": 75
+    },
+    {
+      "symbol": "ARBUSDT",
+      "volume_24h_usdt": 9809070.1749875,
+      "funding_rate": 5e-05,
+      "last": 0.17077,
+      "max_lever": 50
+    },
+    {
+      "symbol": "XLMUSDT",
+      "volume_24h_usdt": 9228617.26285,
+      "funding_rate": -2.1e-05,
+      "last": 0.16922,
+      "max_lever": 75
+    },
+    {
+      "symbol": "UNIUSDT",
+      "volume_24h_usdt": 9079515.385,
+      "funding_rate": 0.0001,
+      "last": 7.001,
+      "max_lever": 75
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "volume_24h_usdt": 8855109.12713,
+      "funding_rate": -4e-05,
+      "last": 0.03952,
+      "max_lever": 20
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "volume_24h_usdt": 8841674.71838,
+      "funding_rate": 3.2e-05,
+      "last": 0.4135,
+      "max_lever": 50
+    },
+    {
+      "symbol": "BCHUSDT",
+      "volume_24h_usdt": 8755364.9334,
+      "funding_rate": 0.0001,
+      "last": 278.03,
+      "max_lever": 75
+    },
+    {
+      "symbol": "TUSDT",
+      "volume_24h_usdt": 7927334.52968,
+      "funding_rate": -0.001047,
+      "last": 0.004698,
+      "max_lever": 50
     }
   ],
   "profiles": {
@@ -217,6 +322,138 @@
       "trend_now": "down",
       "return_1y": -0.651880753058828,
       "avg_funding_8h": 6.093703703703693e-05
+    },
+    "QNTUSDT": {
+      "bars": 7338,
+      "years": 3.35,
+      "annual_volatility": 0.8660779159076856,
+      "avg_adx": 24.931766970929615,
+      "avg_efficiency_ratio": 0.1408544492863762,
+      "adx_now": 24.860302043436466,
+      "trend_now": "up",
+      "return_1y": 1.5551740468861,
+      "avg_funding_8h": 2.8629629629629633e-05
+    },
+    "WLDUSDT": {
+      "bars": 7135,
+      "years": 3.26,
+      "annual_volatility": 1.2905291817760478,
+      "avg_adx": 27.308445904611347,
+      "avg_efficiency_ratio": 0.16522405010367466,
+      "adx_now": 39.14474233673642,
+      "trend_now": "down",
+      "return_1y": -0.5312799744218266,
+      "avg_funding_8h": 6.53814814814813e-05
+    },
+    "DOGEUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.8895755388324302,
+      "avg_adx": 27.48932233682887,
+      "avg_efficiency_ratio": 0.1599907789351241,
+      "adx_now": 35.9932613849287,
+      "trend_now": "down",
+      "return_1y": -0.6195989555106667,
+      "avg_funding_8h": 7.49444444444443e-05
+    },
+    "COMPUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.9496868069864396,
+      "avg_adx": 26.25681168230767,
+      "avg_efficiency_ratio": 0.15282191604930712,
+      "adx_now": 32.713493906744,
+      "trend_now": "down",
+      "return_1y": -0.4603256655466529,
+      "avg_funding_8h": 9.650740740740705e-05
+    },
+    "BNBUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.5308924571553992,
+      "avg_adx": 26.546023295966712,
+      "avg_efficiency_ratio": 0.15764471528012555,
+      "adx_now": 15.11576574345804,
+      "trend_now": "up",
+      "return_1y": -0.3445805244767586,
+      "avg_funding_8h": 6.947037037037018e-05
+    },
+    "ARBUSDT": {
+      "bars": 7878,
+      "years": 3.6,
+      "annual_volatility": 0.9833115562416632,
+      "avg_adx": 27.17402771183249,
+      "avg_efficiency_ratio": 0.16719529985653875,
+      "adx_now": 29.26478018810655,
+      "trend_now": "down",
+      "return_1y": -0.48112864077669903,
+      "avg_funding_8h": 5.931851851851835e-05
+    },
+    "XLMUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.8331072639743097,
+      "avg_adx": 27.282665131170788,
+      "avg_efficiency_ratio": 0.15829114342924427,
+      "adx_now": 40.1094317319003,
+      "trend_now": "down",
+      "return_1y": -0.48897880306781805,
+      "avg_funding_8h": 6.819999999999979e-05
+    },
+    "UNIUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.9606042244551658,
+      "avg_adx": 26.841869118581613,
+      "avg_efficiency_ratio": 0.1649348366725101,
+      "adx_now": 20.189458676096343,
+      "trend_now": "down",
+      "return_1y": 0.07634638922888626,
+      "avg_funding_8h": 7.261111111111091e-05
+    },
+    "ORDERUSDT": {
+      "bars": 4735,
+      "years": 2.16,
+      "annual_volatility": 1.462958714314527,
+      "avg_adx": 25.31168272558983,
+      "avg_efficiency_ratio": 0.15133120269555445,
+      "adx_now": 45.7361899091498,
+      "trend_now": "up",
+      "return_1y": -0.8613086770981508,
+      "avg_funding_8h": -8.859756097561253e-05
+    },
+    "ONDOUSDT": {
+      "bars": 5659,
+      "years": 2.58,
+      "annual_volatility": 1.0744612727194012,
+      "avg_adx": 25.705204771652415,
+      "avg_efficiency_ratio": 0.14766688931285216,
+      "adx_now": 34.24935150239565,
+      "trend_now": "down",
+      "return_1y": -0.4546295073306036,
+      "avg_funding_8h": 3.822962962962976e-05
+    },
+    "BCHUSDT": {
+      "bars": 8760,
+      "years": 4.0,
+      "annual_volatility": 0.7938400298277271,
+      "avg_adx": 26.92745973120765,
+      "avg_efficiency_ratio": 0.16250933832647613,
+      "adx_now": 15.72455218218486,
+      "trend_now": "down",
+      "return_1y": -0.48995258935083885,
+      "avg_funding_8h": 5.9566666666666524e-05
+    },
+    "TUSDT": {
+      "bars": 4820,
+      "years": 2.2,
+      "annual_volatility": 0.9103504687647678,
+      "avg_adx": 25.53382963782227,
+      "avg_efficiency_ratio": 0.14428555180197472,
+      "adx_now": 34.69254065064242,
+      "trend_now": "down",
+      "return_1y": -0.6414483821263482,
+      "avg_funding_8h": -0.000632367262723523
     }
   },
   "ranking": [
@@ -238,6 +475,72 @@
           "atr_n": 14,
           "mult": 4.0,
           "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ARBUSDT",
+      "strategy": "auto",
+      "oos_return": 0.487952918221503,
+      "oos_cagr": 0.18651169427648595,
+      "oos_max_drawdown": 0.050526736098942406,
+      "oos_sharpe": 1.7760888069518745,
+      "oos_trades": 101,
+      "folds": 10,
+      "positive_folds": 0.9,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.07951172922810534,
+      "oos_cagr": 0.037519976537574884,
+      "oos_max_drawdown": 0.013276465584504573,
+      "oos_sharpe": 1.7604574392115147,
+      "oos_trades": 8,
+      "folds": 9,
+      "positive_folds": 0.5555555555555556,
+      "eligible": false,
+      "rejected_because": "few trades",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.5,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ARBUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.457196249136524,
+      "oos_cagr": 0.17589446736066394,
+      "oos_max_drawdown": 0.05052673609894224,
+      "oos_sharpe": 1.7138958103329687,
+      "oos_trades": 95,
+      "folds": 10,
+      "positive_folds": 0.8,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
         }
       ]
     },
@@ -457,6 +760,28 @@
       ]
     },
     {
+      "symbol": "XLMUSDT",
+      "strategy": "auto",
+      "oos_return": 0.38034991273952423,
+      "oos_cagr": 0.1261687953396069,
+      "oos_max_drawdown": 0.07101468259014754,
+      "oos_sharpe": 1.1263659092261387,
+      "oos_trades": 137,
+      "folds": 11,
+      "positive_folds": 0.7272727272727273,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
       "symbol": "ENAUSDT",
       "strategy": "auto",
       "oos_return": 0.12914239697518304,
@@ -499,6 +824,27 @@
       ]
     },
     {
+      "symbol": "DOGEUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.3491145145519363,
+      "oos_cagr": 0.11670695166538514,
+      "oos_max_drawdown": 0.13039954439069146,
+      "oos_sharpe": 1.0541441278685082,
+      "oos_trades": 143,
+      "folds": 11,
+      "positive_folds": 0.8181818181818182,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "ENAUSDT",
       "strategy": "supertrend",
       "oos_return": 0.15217915757939582,
@@ -520,6 +866,49 @@
       ]
     },
     {
+      "symbol": "DOGEUSDT",
+      "strategy": "auto",
+      "oos_return": 0.3283793652045637,
+      "oos_cagr": 0.11034922404524905,
+      "oos_max_drawdown": 0.15923757749358813,
+      "oos_sharpe": 0.9637284336279871,
+      "oos_trades": 109,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 200,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.3155728944630869,
+      "oos_cagr": 0.10639120215879316,
+      "oos_max_drawdown": 0.0710146825901475,
+      "oos_sharpe": 0.9538791780619363,
+      "oos_trades": 146,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "ETHUSDT",
       "strategy": "tsmom",
       "oos_return": 0.19461202605121186,
@@ -536,6 +925,28 @@
         {
           "lookback": 126,
           "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.20111254546842106,
+      "oos_cagr": 0.06988359293424495,
+      "oos_max_drawdown": 0.08191804307371343,
+      "oos_sharpe": 0.8333165298711425,
+      "oos_trades": 108,
+      "folds": 11,
+      "positive_folds": 0.7272727272727273,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 20,
+          "atr_stop": 2.5,
           "allow_short": true
         }
       ]
@@ -605,6 +1016,28 @@
       ]
     },
     {
+      "symbol": "ARBUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.12652032716076467,
+      "oos_cagr": 0.05260486432239908,
+      "oos_max_drawdown": 0.08301139775782512,
+      "oos_sharpe": 0.7173416520430638,
+      "oos_trades": 94,
+      "folds": 10,
+      "positive_folds": 0.7,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "ETHUSDT",
       "strategy": "auto",
       "oos_return": 0.1363874885390992,
@@ -621,6 +1054,27 @@
         {
           "lookback": 126,
           "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ARBUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.16461693173460734,
+      "oos_cagr": 0.06777864704120473,
+      "oos_max_drawdown": 0.07446813785952189,
+      "oos_sharpe": 0.7078751491654737,
+      "oos_trades": 157,
+      "folds": 10,
+      "positive_folds": 0.6,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 2.0,
           "allow_short": true
         }
       ]
@@ -669,6 +1123,49 @@
       ]
     },
     {
+      "symbol": "WLDUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.15067244814323688,
+      "oos_cagr": 0.07372232242304344,
+      "oos_max_drawdown": 0.10297799452740493,
+      "oos_sharpe": 0.6827041163882644,
+      "oos_trades": 133,
+      "folds": 8,
+      "positive_folds": 0.625,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.1585280127219979,
+      "oos_cagr": 0.055741360072356416,
+      "oos_max_drawdown": 0.09675887618117304,
+      "oos_sharpe": 0.6815266963936574,
+      "oos_trades": 70,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "XRPUSDT",
       "strategy": "ema_trend",
       "oos_return": 0.10214086785180787,
@@ -687,6 +1184,28 @@
           "slow": 200,
           "adx_min": 20,
           "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.2687439973195944,
+      "oos_cagr": 0.12141607020950573,
+      "oos_max_drawdown": 0.1482381141855839,
+      "oos_sharpe": 0.6618861078073434,
+      "oos_trades": 76,
+      "folds": 9,
+      "positive_folds": 0.3333333333333333,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": false
         }
       ]
     },
@@ -735,6 +1254,27 @@
       ]
     },
     {
+      "symbol": "BCHUSDT",
+      "strategy": "auto",
+      "oos_return": 0.13313982599902308,
+      "oos_cagr": 0.04715325323104991,
+      "oos_max_drawdown": 0.09675887618117304,
+      "oos_sharpe": 0.6207484898786533,
+      "oos_trades": 79,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "SOLUSDT",
       "strategy": "mean_reversion",
       "oos_return": 0.006186994908438548,
@@ -757,6 +1297,28 @@
       ]
     },
     {
+      "symbol": "WLDUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.0885465951878266,
+      "oos_cagr": 0.043938876351756306,
+      "oos_max_drawdown": 0.08835325931374435,
+      "oos_sharpe": 0.5606402134623092,
+      "oos_trades": 61,
+      "folds": 8,
+      "positive_folds": 0.5,
+      "eligible": true,
+      "rejected_because": "",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 50,
+          "slow": 200,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "PEPEUSDT",
       "strategy": "donchian",
       "oos_return": 0.06748000443150359,
@@ -773,6 +1335,28 @@
         {
           "entry_n": 55,
           "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BNBUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.11749797995006372,
+      "oos_cagr": 0.04180142679837928,
+      "oos_max_drawdown": 0.1412995935425555,
+      "oos_sharpe": 0.532936786168545,
+      "oos_trades": 91,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
           "atr_stop": 3.5,
           "allow_short": true
         }
@@ -800,6 +1384,28 @@
       ]
     },
     {
+      "symbol": "UNIUSDT",
+      "strategy": "auto",
+      "oos_return": 0.09163571747446286,
+      "oos_cagr": 0.03284796601144224,
+      "oos_max_drawdown": 0.0982931695558814,
+      "oos_sharpe": 0.49009082401075843,
+      "oos_trades": 84,
+      "folds": 11,
+      "positive_folds": 0.6363636363636364,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 20,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "PEPEUSDT",
       "strategy": "tsmom",
       "oos_return": 0.06561218993700169,
@@ -816,6 +1422,50 @@
         {
           "lookback": 252,
           "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.0748520050149244,
+      "oos_cagr": 0.026965603525010984,
+      "oos_max_drawdown": 0.08311467050816672,
+      "oos_sharpe": 0.4477541175969774,
+      "oos_trades": 32,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.09374424273964244,
+      "oos_cagr": 0.03358291537020608,
+      "oos_max_drawdown": 0.1154113867849768,
+      "oos_sharpe": 0.4437276787903776,
+      "oos_trades": 104,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 200,
+          "adx_min": 0,
           "allow_short": true
         }
       ]
@@ -951,6 +1601,27 @@
       ]
     },
     {
+      "symbol": "DOGEUSDT",
+      "strategy": "supertrend",
+      "oos_return": 0.06998119954233828,
+      "oos_cagr": 0.025247635986096917,
+      "oos_max_drawdown": 0.13612610664708086,
+      "oos_sharpe": 0.3222570254163923,
+      "oos_trades": 116,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "SOLUSDT",
       "strategy": "donchian",
       "oos_return": 0.05276334736756061,
@@ -988,6 +1659,92 @@
         "tsmom",
         {
           "lookback": 252,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.06283293114220578,
+      "oos_cagr": 0.022717427239665744,
+      "oos_max_drawdown": 0.11683879189050905,
+      "oos_sharpe": 0.29980463032052973,
+      "oos_trades": 71,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 100,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.04941433675176743,
+      "oos_cagr": 0.017938596100931514,
+      "oos_max_drawdown": 0.11771636559114369,
+      "oos_sharpe": 0.29067457140887215,
+      "oos_trades": 83,
+      "folds": 11,
+      "positive_folds": 0.7272727272727273,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.027236368273281464,
+      "oos_cagr": 0.009954931423408642,
+      "oos_max_drawdown": 0.06122106488437843,
+      "oos_sharpe": 0.26274728903464994,
+      "oos_trades": 33,
+      "folds": 11,
+      "positive_folds": 0.5454545454545454,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "WLDUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.03016616833663277,
+      "oos_cagr": 0.015176979938500423,
+      "oos_max_drawdown": 0.06961927886940034,
+      "oos_sharpe": 0.24840028808714107,
+      "oos_trades": 75,
+      "folds": 8,
+      "positive_folds": 0.75,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
           "atr_stop": 3.0,
           "allow_short": true
         }
@@ -1147,6 +1904,27 @@
       ]
     },
     {
+      "symbol": "ARBUSDT",
+      "strategy": "tsmom",
+      "oos_return": 0.003000253599892755,
+      "oos_cagr": 0.00129002735942918,
+      "oos_max_drawdown": 0.08815097109947134,
+      "oos_sharpe": 0.05107264928209099,
+      "oos_trades": 69,
+      "folds": 10,
+      "positive_folds": 0.5,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "NEARUSDT",
       "strategy": "tsmom",
       "oos_return": 0.002360513855926394,
@@ -1184,6 +1962,71 @@
         {
           "atr_n": 14,
           "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "WLDUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.001258675575391166,
+      "oos_cagr": 0.0006377330489453215,
+      "oos_max_drawdown": 0.04830601028439224,
+      "oos_sharpe": 0.036582907205134345,
+      "oos_trades": 13,
+      "folds": 8,
+      "positive_folds": 0.5,
+      "eligible": false,
+      "rejected_because": "low Sharpe",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "WLDUSDT",
+      "strategy": "auto",
+      "oos_return": -0.004136581950062168,
+      "oos_cagr": -0.0020986748595840377,
+      "oos_max_drawdown": 0.13471562616447175,
+      "oos_sharpe": 0.02377978430078592,
+      "oos_trades": 89,
+      "folds": 8,
+      "positive_folds": 0.375,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": 0.0005080601489677594,
+      "oos_cagr": 0.00018725354641024872,
+      "oos_max_drawdown": 0.02153488118660364,
+      "oos_sharpe": 0.019376524603512944,
+      "oos_trades": 13,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
           "allow_short": true
         }
       ]
@@ -1232,6 +2075,72 @@
       ]
     },
     {
+      "symbol": "TUSDT",
+      "strategy": "donchian",
+      "oos_return": 0.0,
+      "oos_cagr": 0.0,
+      "oos_max_drawdown": 0.0,
+      "oos_sharpe": 0.0,
+      "oos_trades": 0,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 2.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "TUSDT",
+      "strategy": "ema_trend",
+      "oos_return": 0.0,
+      "oos_cagr": 0.0,
+      "oos_max_drawdown": 0.0,
+      "oos_sharpe": 0.0,
+      "oos_trades": 0,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "WLDUSDT",
+      "strategy": "donchian",
+      "oos_return": -0.013120795339796487,
+      "oos_cagr": -0.006671632021743479,
+      "oos_max_drawdown": 0.15616729520151845,
+      "oos_sharpe": -0.017889666376635246,
+      "oos_trades": 73,
+      "folds": 8,
+      "positive_folds": 0.375,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 2.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "SOLUSDT",
       "strategy": "supertrend",
       "oos_return": -0.014071341906378043,
@@ -1270,6 +2179,27 @@
           "lookback": 540,
           "atr_stop": 3.0,
           "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.02817009331672027,
+      "oos_cagr": -0.03164575793649216,
+      "oos_max_drawdown": 0.19207109919832818,
+      "oos_sharpe": -0.05173135275226843,
+      "oos_trades": 55,
+      "folds": 4,
+      "positive_folds": 0.25,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 2.0,
+          "allow_short": false
         }
       ]
     },
@@ -1317,6 +2247,49 @@
       ]
     },
     {
+      "symbol": "BNBUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.03887039228964606,
+      "oos_cagr": -0.014508229989352972,
+      "oos_max_drawdown": 0.12748487611198372,
+      "oos_sharpe": -0.18462750691434313,
+      "oos_trades": 84,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 200,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BNBUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.049971985539786545,
+      "oos_cagr": -0.01871967975354416,
+      "oos_max_drawdown": 0.1329704142642959,
+      "oos_sharpe": -0.18759586573618317,
+      "oos_trades": 130,
+      "folds": 11,
+      "positive_folds": 0.45454545454545453,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 4.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "NEARUSDT",
       "strategy": "supertrend",
       "oos_return": -0.047481761307105685,
@@ -1333,6 +2306,49 @@
         {
           "atr_n": 14,
           "mult": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.04207347416805507,
+      "oos_cagr": -0.03425171524004933,
+      "oos_max_drawdown": 0.12228199212703722,
+      "oos_sharpe": -0.22733585393186692,
+      "oos_trades": 109,
+      "folds": 5,
+      "positive_folds": 0.4,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 2.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "donchian",
+      "oos_return": -0.030718437997904857,
+      "oos_cagr": -0.034502901031371325,
+      "oos_max_drawdown": 0.08808667103146335,
+      "oos_sharpe": -0.22750647966576862,
+      "oos_trades": 17,
+      "folds": 4,
+      "positive_folds": 0.5,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 10,
+          "atr_stop": 2.5,
           "allow_short": false
         }
       ]
@@ -1360,6 +2376,28 @@
       ]
     },
     {
+      "symbol": "BNBUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.020444222199173856,
+      "oos_cagr": -0.007585434502544008,
+      "oos_max_drawdown": 0.04992598378003951,
+      "oos_sharpe": -0.23089647221881232,
+      "oos_trades": 18,
+      "folds": 11,
+      "positive_folds": 0.36363636363636365,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "PEPEUSDT",
       "strategy": "mean_reversion",
       "oos_return": -0.011268366090919857,
@@ -1377,6 +2415,71 @@
           "bb_k": 2.0,
           "rsi_lo": 30,
           "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.00865151580116097,
+      "oos_cagr": -0.007020503094299024,
+      "oos_max_drawdown": 0.030377668248763104,
+      "oos_sharpe": -0.29503416245280084,
+      "oos_trades": 4,
+      "folds": 5,
+      "positive_folds": 0.2,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "strategy": "donchian",
+      "oos_return": -0.0337437727549601,
+      "oos_cagr": -0.027448337883894336,
+      "oos_max_drawdown": 0.1077302773375269,
+      "oos_sharpe": -0.30639027115989603,
+      "oos_trades": 47,
+      "folds": 5,
+      "positive_folds": 0.4,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 100,
+          "exit_n": 20,
+          "atr_stop": 3.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.02068262967330592,
+      "oos_cagr": -0.016802781138710143,
+      "oos_max_drawdown": 0.05890163060128297,
+      "oos_sharpe": -0.3090335388918356,
+      "oos_trades": 25,
+      "folds": 5,
+      "positive_folds": 0.4,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
           "allow_short": true
         }
       ]
@@ -1425,6 +2528,49 @@
       ]
     },
     {
+      "symbol": "ONDOUSDT",
+      "strategy": "auto",
+      "oos_return": -0.025225603072283054,
+      "oos_cagr": -0.02050249207359245,
+      "oos_max_drawdown": 0.06326730917244197,
+      "oos_sharpe": -0.35145435554440135,
+      "oos_trades": 34,
+      "folds": 5,
+      "positive_folds": 0.4,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.013437734305476123,
+      "oos_cagr": -0.015109839821567328,
+      "oos_max_drawdown": 0.02785732665432085,
+      "oos_sharpe": -0.37642292379422837,
+      "oos_trades": 8,
+      "folds": 4,
+      "positive_folds": 0.5,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 100,
+          "adx_min": 0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "BTCUSDT",
       "strategy": "mean_reversion",
       "oos_return": -0.028847245871982397,
@@ -1447,6 +2593,351 @@
       ]
     },
     {
+      "symbol": "QNTUSDT",
+      "strategy": "auto",
+      "oos_return": -0.05366668980095424,
+      "oos_cagr": -0.026206085543423407,
+      "oos_max_drawdown": 0.128955380026574,
+      "oos_sharpe": -0.39403982432736706,
+      "oos_trades": 76,
+      "folds": 9,
+      "positive_folds": 0.4444444444444444,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.06340529698421804,
+      "oos_cagr": -0.031043477743860515,
+      "oos_max_drawdown": 0.13978257488595425,
+      "oos_sharpe": -0.3970408723140293,
+      "oos_trades": 73,
+      "folds": 9,
+      "positive_folds": 0.3333333333333333,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.10788937540683918,
+      "oos_cagr": -0.041210858376703796,
+      "oos_max_drawdown": 0.20466245636623093,
+      "oos_sharpe": -0.4235759740962471,
+      "oos_trades": 134,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.07782611775404835,
+      "oos_cagr": -0.029424930499540425,
+      "oos_max_drawdown": 0.13429779962549934,
+      "oos_sharpe": -0.4461997032363445,
+      "oos_trades": 75,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.11151171048648056,
+      "oos_cagr": -0.04264778682081505,
+      "oos_max_drawdown": 0.17850196849181404,
+      "oos_sharpe": -0.45107860380058157,
+      "oos_trades": 153,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 10,
+          "mult": 4.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.08261273278096182,
+      "oos_cagr": -0.03128505683385885,
+      "oos_max_drawdown": 0.1759437660474831,
+      "oos_sharpe": -0.4695568264594559,
+      "oos_trades": 76,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 20,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.08611076856929079,
+      "oos_cagr": -0.03264830727272927,
+      "oos_max_drawdown": 0.14167032101155197,
+      "oos_sharpe": -0.48936556792348984,
+      "oos_trades": 96,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.09174668601294045,
+      "oos_cagr": -0.03485167781734089,
+      "oos_max_drawdown": 0.1584694013608884,
+      "oos_sharpe": -0.4942509079814146,
+      "oos_trades": 70,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.039084508594803724,
+      "oos_cagr": -0.014589164900496665,
+      "oos_max_drawdown": 0.07577227418448226,
+      "oos_sharpe": -0.501382374001642,
+      "oos_trades": 18,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.5,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.07918429850676523,
+      "oos_cagr": -0.029952112393521246,
+      "oos_max_drawdown": 0.13299126128161384,
+      "oos_sharpe": -0.5168550519090398,
+      "oos_trades": 48,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 10,
+          "slow": 100,
+          "adx_min": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "strategy": "donchian",
+      "oos_return": -0.05642507058804247,
+      "oos_cagr": -0.02757360626445471,
+      "oos_max_drawdown": 0.11593789109849788,
+      "oos_sharpe": -0.5737220293502515,
+      "oos_trades": 37,
+      "folds": 9,
+      "positive_folds": 0.2222222222222222,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 55,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ARBUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.03466428263913035,
+      "oos_cagr": -0.015067444090554716,
+      "oos_max_drawdown": 0.051184593303512174,
+      "oos_sharpe": -0.6177289222264438,
+      "oos_trades": 9,
+      "folds": 10,
+      "positive_folds": 0.1,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.5,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "QNTUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.08875415310648471,
+      "oos_cagr": -0.043758536749843424,
+      "oos_max_drawdown": 0.1164358022566918,
+      "oos_sharpe": -0.6793912577438458,
+      "oos_trades": 83,
+      "folds": 9,
+      "positive_folds": 0.3333333333333333,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ONDOUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.03635570990100889,
+      "oos_cagr": -0.029580468383187952,
+      "oos_max_drawdown": 0.06636773266268174,
+      "oos_sharpe": -0.6913268680200704,
+      "oos_trades": 15,
+      "folds": 5,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 50,
+          "slow": 200,
+          "adx_min": 20,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "donchian",
+      "oos_return": -0.10675753580705516,
+      "oos_cagr": -0.04076262934315977,
+      "oos_max_drawdown": 0.13989043332526518,
+      "oos_sharpe": -0.7020009426008871,
+      "oos_trades": 53,
+      "folds": 11,
+      "positive_folds": 0.2727272727272727,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "donchian",
+        {
+          "entry_n": 20,
+          "exit_n": 10,
+          "atr_stop": 3.5,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.010569080867182445,
+      "oos_cagr": -0.003909099864907506,
+      "oos_max_drawdown": 0.010569080867182445,
+      "oos_sharpe": -0.7037562456538609,
+      "oos_trades": 1,
+      "folds": 11,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
       "symbol": "NEARUSDT",
       "strategy": "mean_reversion",
       "oos_return": -0.047546043109093605,
@@ -1459,6 +2950,275 @@
       "eligible": false,
       "rejected_because": "OOS loss, low Sharpe, unstable folds",
       "latest": null
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "auto",
+      "oos_return": -0.13245760332707035,
+      "oos_cagr": -0.05103012960708786,
+      "oos_max_drawdown": 0.19618958590732782,
+      "oos_sharpe": -0.7611780676109099,
+      "oos_trades": 88,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BNBUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.11496470373356027,
+      "oos_cagr": -0.04402098733233273,
+      "oos_max_drawdown": 0.1526491765831296,
+      "oos_sharpe": -0.793576290558675,
+      "oos_trades": 84,
+      "folds": 11,
+      "positive_folds": 0.09090909090909091,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.022616183343833973,
+      "oos_cagr": -0.008397151849993678,
+      "oos_max_drawdown": 0.023596126077265245,
+      "oos_sharpe": -0.8056522398439915,
+      "oos_trades": 4,
+      "folds": 11,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": null
+    },
+    {
+      "symbol": "TUSDT",
+      "strategy": "supertrend",
+      "oos_return": -0.028999990071660653,
+      "oos_cagr": -0.03123448210505364,
+      "oos_max_drawdown": 0.04993197519022907,
+      "oos_sharpe": -0.8250921277903098,
+      "oos_trades": 13,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "supertrend",
+        {
+          "atr_n": 14,
+          "mult": 2.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "TUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.02737818868858699,
+      "oos_cagr": -0.029489625773110206,
+      "oos_max_drawdown": 0.050416198789690184,
+      "oos_sharpe": -0.8859421483404157,
+      "oos_trades": 7,
+      "folds": 4,
+      "positive_folds": 0.25,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "TUSDT",
+      "strategy": "auto",
+      "oos_return": -0.02737818868858699,
+      "oos_cagr": -0.029489625773110206,
+      "oos_max_drawdown": 0.050416198789690184,
+      "oos_sharpe": -0.8859421483404157,
+      "oos_trades": 7,
+      "folds": 4,
+      "positive_folds": 0.25,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "BCHUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.09344343501104069,
+      "oos_cagr": -0.03551671441078608,
+      "oos_max_drawdown": 0.10733132634457684,
+      "oos_sharpe": -0.9363918806319247,
+      "oos_trades": 57,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "COMPUSDT",
+      "strategy": "ema_trend",
+      "oos_return": -0.15351480168246456,
+      "oos_cagr": -0.059586828216684595,
+      "oos_max_drawdown": 0.18970200036528223,
+      "oos_sharpe": -1.0252310336760873,
+      "oos_trades": 66,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "ema_trend",
+        {
+          "fast": 50,
+          "slow": 100,
+          "adx_min": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "BNBUSDT",
+      "strategy": "auto",
+      "oos_return": -0.1726356184468384,
+      "oos_cagr": -0.06747387832405238,
+      "oos_max_drawdown": 0.2110170316913482,
+      "oos_sharpe": -1.054216097542554,
+      "oos_trades": 81,
+      "folds": 11,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 252,
+          "atr_stop": 5.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.07360791274695488,
+      "oos_cagr": -0.08244650451844548,
+      "oos_max_drawdown": 0.08386065193219294,
+      "oos_sharpe": -1.2031414627860955,
+      "oos_trades": 22,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "UNIUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.07292123949969465,
+      "oos_cagr": -0.02752515893518037,
+      "oos_max_drawdown": 0.08366023616320212,
+      "oos_sharpe": -1.2432533507581036,
+      "oos_trades": 16,
+      "folds": 11,
+      "positive_folds": 0.18181818181818182,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 30,
+          "adx_max": 20,
+          "allow_short": true
+        }
+      ]
+    },
+    {
+      "symbol": "TUSDT",
+      "strategy": "tsmom",
+      "oos_return": -0.021670712335187137,
+      "oos_cagr": -0.023347282898747213,
+      "oos_max_drawdown": 0.023456002397740885,
+      "oos_sharpe": -1.54546944996494,
+      "oos_trades": 4,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 126,
+          "atr_stop": 3.0,
+          "allow_short": false
+        }
+      ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "auto",
+      "oos_return": -0.11232621193438352,
+      "oos_cagr": -0.12548930142225334,
+      "oos_max_drawdown": 0.1261611243990937,
+      "oos_sharpe": -1.5980620938220091,
+      "oos_trades": 35,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "tsmom",
+        {
+          "lookback": 540,
+          "atr_stop": 3.0,
+          "allow_short": true
+        }
+      ]
     },
     {
       "symbol": "DOODUSDT",
@@ -1502,7 +3262,31 @@
           "allow_short": true
         }
       ]
+    },
+    {
+      "symbol": "ORDERUSDT",
+      "strategy": "mean_reversion",
+      "oos_return": -0.05226013642464,
+      "oos_cagr": -0.058617094836428074,
+      "oos_max_drawdown": 0.05395735991669552,
+      "oos_sharpe": -2.032907723622057,
+      "oos_trades": 7,
+      "folds": 4,
+      "positive_folds": 0.0,
+      "eligible": false,
+      "rejected_because": "few trades, OOS loss, low Sharpe, unstable folds",
+      "latest": [
+        "mean_reversion",
+        {
+          "bb_k": 2.0,
+          "rsi_lo": 25,
+          "adx_max": 25,
+          "allow_short": true
+        }
+      ]
     }
   ],
-  "errors": {}
+  "errors": {
+    "ADAUSDT": "RuntimeError: GET /api/v2/mix/market/history-candles failed after 4 attempts: HTTP Error 429: Too Many Requests"
+  }
 }

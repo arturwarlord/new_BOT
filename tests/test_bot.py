@@ -189,6 +189,41 @@ class ScannerTests(unittest.TestCase):
         self.assertEqual(len(eq), len(ts) + 1)
 
 
+class PortfolioCurveTests(unittest.TestCase):
+    @staticmethod
+    def sleeve(rets, exposure):
+        from bot.walkforward import StrategyWF
+        ts, eq = [0], [1.0]
+        for i, r in enumerate(rets, 1):
+            ts.append(i * 4 * 3_600_000)
+            eq.append(eq[-1] * (1 + r))
+        return {"_wf": StrategyWF("x", ts, eq, [], [], 0, None, 0.0, [exposure] * len(ts))}
+
+    def test_leverage_cap_scales_returns(self):
+        a, b = self.sleeve([0.01] * 5, 2.0), self.sleeve([0.01] * 5, 2.0)
+        _, free = portfolio_curve([a, b])
+        _, capped = portfolio_curve([a, b], max_total_leverage=3.0)
+        self.assertAlmostEqual(free[1], 1.02)
+        self.assertAlmostEqual(capped[1], 1 + 0.02 * 3 / 4)
+
+    def test_daily_loss_halts_until_next_day(self):
+        a = self.sleeve([-0.06, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05], 1.0)
+        ts, eq = portfolio_curve([a], max_daily_loss=0.05)
+        self.assertAlmostEqual(eq[1], 0.94)
+        day = [i for i, t in enumerate(ts, 1) if t // 86_400_000 == 0]
+        self.assertTrue(all(abs(eq[i] - 0.94) < 1e-12 for i in day))
+        self.assertGreater(eq[-1], 0.94)
+
+    def test_cutoff_stats_ignore_later_folds(self):
+        c = synthetic(5000, seed=21)
+        wf = walk_forward(c, 2190, names=["tsmom"])["tsmom"]
+        cut = wf.fold_end_ts[1] + 1
+        st = wf.stats(2190, cut)
+        self.assertEqual(st["folds"], 2)
+        self.assertEqual(st["oos_trades"], sum(wf.fold_trades[:2]))
+        self.assertEqual(len(wf.oos_exposure), len(wf.oos_ts))
+
+
 class TraderTests(unittest.TestCase):
     def test_paper_cycle_opens_with_stop_and_respects_lock(self):
         up = synthetic(1200, seed=5, drift=0.003, vol=0.01)

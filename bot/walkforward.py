@@ -3,7 +3,7 @@ training window and judged on the following unseen test window. Test windows til
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Sequence, Tuple
 
 from . import strategies as S
@@ -29,17 +29,24 @@ class StrategyWF:
     trades: int
     latest: Optional[Tuple[str, dict]]  # choice on the most recent training window (for live trading)
     latest_train_score: float
+    oos_exposure: List[float] = field(default_factory=list)   # aligned with oos_ts
+    fold_end_ts: List[int] = field(default_factory=list)      # timestamp of the last bar of every test window
+    fold_trades: List[int] = field(default_factory=list)
 
     def stats(self, bars_per_year: float, cutoff_ts: Optional[int] = None) -> dict:
+        """Out-of-sample stats; with `cutoff_ts` only information available before it is used."""
         ts, eq = self.oos_ts, self.oos_equity
+        folds, trades = self.fold_returns, self.trades
         if cutoff_ts is not None:
             k = next((i for i, t in enumerate(ts) if t >= cutoff_ts), len(ts))
             ts, eq = ts[:k], eq[:k]
+            done = [j for j, t in enumerate(self.fold_end_ts) if t < cutoff_ts]
+            folds = [self.fold_returns[j] for j in done]
+            trades = sum(self.fold_trades[j] for j in done)
         total, cagr, mdd, sharpe = equity_stats(eq, bars_per_year)
-        folds = self.fold_returns
         return {
             "oos_return": total, "oos_cagr": cagr, "oos_max_drawdown": mdd, "oos_sharpe": sharpe,
-            "oos_trades": self.trades, "folds": len(folds),
+            "oos_trades": trades, "folds": len(folds),
             "positive_folds": sum(1 for r in folds if r > 0) / len(folds) if folds else 0.0,
         }
 
@@ -93,7 +100,8 @@ def walk_forward(c, bars_per_year: float, funding: Optional[Sequence[float]] = N
         best = max(idx_list, key=lambda j: scores[j])
         return (best, scores[best]) if scores[best] > 0 else (None, scores[best])
 
-    acc = {g: {"ts": [], "eq": [1.0], "rets": [], "choices": [], "trades": 0} for g in groups}
+    acc = {g: {"ts": [], "eq": [1.0], "exp": [0.0], "rets": [], "choices": [], "trades": 0, "fold_trades": []}
+           for g in groups}
     for a, b, e in folds:
         scores = [score(compute_metrics(run(c, cd.signals, costs, risk, a, b, funding=funding), bars_per_year),
                         min_trades) for cd in cands]
@@ -102,19 +110,22 @@ def walk_forward(c, bars_per_year: float, funding: Optional[Sequence[float]] = N
             st = acc[g]
             best, _ = best_of(idx_list, scores)
             if best is None:  # nothing had an edge in training: stay flat
-                curve, trades, choice = [1.0] * (e - b), 0, None
+                curve, expo, trades, choice = [1.0] * (e - b), [0.0] * (e - b), 0, None
             else:
                 if best not in oos_cache:
                     oos_cache[best] = run(c, cands[best].signals, costs, risk, b, e, funding=funding)
                 res = oos_cache[best]
-                curve = [v / res.equity[0] for v in res.equity]
+                curve = [v / 10_000.0 for v in res.equity]  # run() starts from 10k equity
+                expo = res.exposure
                 trades, choice = len(res.trades), (cands[best].strategy, cands[best].params)
             base = st["eq"][-1]
             st["eq"].extend(base * v for v in curve)
+            st["exp"].extend(expo)
             st["ts"].extend(c.ts[b:e])
-            st["rets"].append(curve[-1] / curve[0] - 1)
+            st["rets"].append(curve[-1] - 1)
             st["choices"].append(choice)
             st["trades"] += trades
+            st["fold_trades"].append(trades)
 
     # latest training window -> what to trade from now on
     a = max(warmup, n - train_bars)
@@ -126,5 +137,6 @@ def walk_forward(c, bars_per_year: float, funding: Optional[Sequence[float]] = N
         best, best_score = best_of(idx_list, latest_scores)
         latest = None if best is None else (cands[best].strategy, cands[best].params)
         ts = ([c.ts[folds[0][1] - 1]] if folds else []) + st["ts"]  # equity starts at 1.0 one bar before OOS
-        out[g] = StrategyWF(g, ts, st["eq"], st["rets"], st["choices"], st["trades"], latest, best_score)
+        out[g] = StrategyWF(g, ts, st["eq"], st["rets"], st["choices"], st["trades"], latest, best_score,
+                            st["exp"], [c.ts[e - 1] for _, _, e in folds], st["fold_trades"])
     return out

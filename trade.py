@@ -37,8 +37,8 @@ def main() -> int:
     ap.add_argument("--loop", action="store_true")
     ap.add_argument("--delay", type=int, default=30, help="seconds after candle close before acting")
     ap.add_argument("--paper-equity", type=float, default=10_000.0)
-    ap.add_argument("--max-total-leverage", type=float, default=3.0)
-    ap.add_argument("--max-daily-loss", type=float, default=0.05)
+    ap.add_argument("--max-total-leverage", type=float, help="default: portfolio.json limits or 3")
+    ap.add_argument("--max-daily-loss", type=float, help="default: portfolio.json limits or 0.05")
     ap.add_argument("--i-understand-the-risk", action="store_true")
     a = ap.parse_args()
 
@@ -62,7 +62,9 @@ def main() -> int:
     else:
         broker = BitgetBroker(demo=(a.mode == "demo"))
     state = State(f"state/trader_{a.mode}.json")
-    limits = Limits(a.max_total_leverage, a.max_daily_loss)
+    pl = pf.get("limits", {})
+    limits = Limits(a.max_total_leverage or pl.get("max_total_leverage", 3.0),
+                    a.max_daily_loss or pl.get("max_daily_loss", 0.05))
     log.info("mode=%s broker=%s sleeves=%s", a.mode, broker.name,
              ", ".join(f"{s['symbol']}:{s['strategy']}" for s in pf["sleeves"]))
 

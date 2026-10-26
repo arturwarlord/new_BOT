@@ -17,7 +17,7 @@ Rules:
 from __future__ import annotations
 
 import math
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from typing import List, Optional, Sequence
 
 from .indicators import is_valid
@@ -80,6 +80,7 @@ class Result:
     last_close: float = float("nan")
     funding_paid: float = 0.0
     bars_in_market: int = 0
+    exposure: List[float] = field(default_factory=list)  # |notional| / equity at each bar close
 
 
 def run(c, sig: Signals, costs: Costs = Costs(), risk: Risk = Risk(), start: int = 0,
@@ -96,6 +97,7 @@ def run(c, sig: Signals, costs: Costs = Costs(), risk: Risk = Risk(), start: int
     lock = 0
     trades: List[Trade] = []
     equity: List[float] = []
+    exposure: List[float] = []
     funding_total = 0.0
     in_market = 0
 
@@ -143,6 +145,7 @@ def run(c, sig: Signals, costs: Costs = Costs(), risk: Risk = Risk(), start: int
                 funding_total += f
         unreal = 0.0 if pos is None else (cl[i] - pos.entry_price) * pos.qty * pos.side
         equity.append(balance + unreal)
+        exposure.append(0.0 if pos is None or equity[-1] <= 0 else pos.qty * cl[i] / equity[-1])
 
         # 4) decide at the close
         t = target[i]
@@ -163,13 +166,14 @@ def run(c, sig: Signals, costs: Costs = Costs(), risk: Risk = Risk(), start: int
     if close_at_end and pos is not None and end > start:
         close_pos(end - 1, cl[end - 1], "end")
         equity[-1] = balance
+        exposure[-1] = 0.0
         open_pos = None
     last = end - 1
     return Result(equity, trades, start, end, open_pos,
                   next_target=pending or 0,
                   next_stop_dist=stop_dist[last] if last >= 0 else float("nan"),
                   stop_lock=lock, last_close=cl[last] if last >= 0 else float("nan"),
-                  funding_paid=funding_total, bars_in_market=in_market)
+                  funding_paid=funding_total, bars_in_market=in_market, exposure=exposure)
 
 
 @dataclass

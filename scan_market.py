@@ -1,6 +1,6 @@
 """Analyse the market and choose what to trade.
 
-    python scan_market.py                       # top-25 liquid perpetuals, 4 years of 4H candles
+    python scan_market.py                       # top-30 liquid perpetuals, 4 years of 4H candles
     python scan_market.py --symbols BTCUSDT ETHUSDT SOLUSDT
     python scan_market.py --top 40 --max-sleeves 6
 
@@ -41,15 +41,17 @@ def sleeve_json(row: dict, weight: float) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbols", nargs="*")
-    ap.add_argument("--top", type=int, default=25)
-    ap.add_argument("--min-volume", type=float, default=20e6, help="min 24h USDT volume")
+    ap.add_argument("--top", type=int, default=30)
+    ap.add_argument("--min-volume", type=float, default=5e6, help="min 24h USDT volume")
     ap.add_argument("--include-rwa", action="store_true", help="also scan tokenised stocks/commodities")
     ap.add_argument("--granularity", default="4H")
     ap.add_argument("--days", type=int, default=1460)
     ap.add_argument("--holdout-days", type=int, default=180)
-    ap.add_argument("--max-sleeves", type=int, default=5)
+    ap.add_argument("--max-sleeves", type=int, default=6)
     ap.add_argument("--risk", type=float, default=0.01, help="equity risked per trade per sleeve")
     ap.add_argument("--max-leverage", type=float, default=2.0, help="per-sleeve notional cap")
+    ap.add_argument("--max-total-leverage", type=float, default=3.0, help="same limit as trade.py")
+    ap.add_argument("--max-daily-loss", type=float, default=0.05, help="same limit as trade.py")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--out", default="reports")
     ap.add_argument("--portfolio", default="config/portfolio.json")
@@ -77,13 +79,14 @@ def main() -> int:
     last_ts = max(r["close_ts"][-1] for r in good)
     cutoff = last_ts - a.holdout_days * 24 * 3_600_000
     pre_sel = select(rank(good, bpy, filters, cutoff), a.max_sleeves, filters, cutoff)
-    hts, heq = portfolio_curve(pre_sel, start_ts=cutoff)
+    lim = {"max_total_leverage": a.max_total_leverage, "max_daily_loss": a.max_daily_loss}
+    hts, heq = portfolio_curve(pre_sel, start_ts=cutoff, **lim)
     holdout = {"from": day(cutoff), "sleeves": [f"{s['symbol']}:{s['strategy']}" for s in pre_sel],
                **curve_stats(heq, bpy), "btc_buy_hold": btc_buy_hold(good, hts)}
 
     ranked = rank(good, bpy, filters)
     final = select(ranked, a.max_sleeves, filters)
-    fts, feq = portfolio_curve(final)
+    fts, feq = portfolio_curve(final, **lim)
     full = {**curve_stats(feq, bpy), "from": day(fts[0]) if fts else None, "to": day(fts[-1]) if fts else None,
             "btc_buy_hold": btc_buy_hold(good, fts)}
 
@@ -95,6 +98,7 @@ def main() -> int:
         "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "granularity": a.granularity,
         "risk": {"risk_pct": risk.risk_pct, "max_leverage": risk.max_leverage},
+        "limits": lim,
         "costs": {"fee_rate": costs.fee_rate, "slippage_rate": costs.slippage_rate},
         "sleeves": [sleeve_json(r, weight) for r in final],
         "backtest_portfolio_oos": full,
@@ -119,7 +123,9 @@ def main() -> int:
     L.append(f"# Анализ рынка Bitget USDT-M ({a.granularity})\n")
     L.append(f"Сгенерировано: {portfolio['generated_at']}. История: до {a.days} дней. "
              f"Комиссия {costs.fee_rate*100:.2f}% + проскальзывание {costs.slippage_rate*100:.2f}% на сторону, funding учтён. "
-             f"Риск {risk.risk_pct*100:.1f}% капитала на сделку в каждом слоте, плечо слота ≤ {risk.max_leverage:g}×.\n")
+             f"Риск {risk.risk_pct*100:.1f}% капитала на сделку в каждом слоте, плечо слота ≤ {risk.max_leverage:g}×; "
+             f"портфель считается с лимитами живого бота: суммарное плечо ≤ {a.max_total_leverage:g}×, "
+             f"стоп торговли на день после просадки {a.max_daily_loss:.0%}.\n")
     L.append("Все цифры ниже — **out-of-sample** (walk-forward: параметры подбираются на 1 году, проверяются на следующих 3 месяцах, которых бот не видел).\n")
     L.append("## Выбранный портфель\n")
     if final:

@@ -29,8 +29,13 @@
 
 ## Последний анализ рынка
 
-Полный отчёт: [`reports/MARKET_ANALYSIS.md`](reports/MARKET_ANALYSIS.md). Выбранный портфель (`config/portfolio.json`): **ENAUSDT tsmom, BTCUSDT tsmom, ETHUSDT donchian, SUIUSDT tsmom, XRPUSDT tsmom (через auto)**.
-Главное, что показал анализ: на 4H лучше всего работают трендовые/моментум-стратегии (`tsmom`, `donchian`), mean reversion почти везде убыточен после издержек. Контрольная проверка на последних 180 днях дала +5.2% при просадке 19.4% против +3.7% у BTC buy&hold — это реалистичное ожидание, а не красивые +145% «портфеля целиком», в которые входит эффект подгонки отбора.
+Полный отчёт: [`reports/MARKET_ANALYSIS.md`](reports/MARKET_ANALYSIS.md). Выбранный портфель (`config/portfolio.json`, топ-30 монет с объёмом ≥ $5 млн/сутки):
+**ARBUSDT donchian, ENAUSDT tsmom, BTCUSDT tsmom, ETHUSDT donchian, XLMUSDT donchian, SUIUSDT tsmom**.
+
+- На 4H лучше всего работают трендовые/моментум-стратегии (`tsmom`, `donchian`); mean reversion почти везде убыточен после издержек.
+- Контрольная проверка на последних 180 днях (выбор только по данным до отсечки, с лимитами живого бота): **+39.1%, просадка 14.7%** против +3.7% у BTC buy&hold. При узкой вселенной (топ-15) та же проверка дала лишь +0.4% при просадке 16.8% — широкая вселенная даёт больше независимых кандидатов. Это **одно** 180-дневное окно, а не гарантия.
+- «Портфель целиком» (+326% с 2024-02) завышен эффектом отбора лучших пар; ориентируйтесь на контрольную проверку и бумажную торговлю.
+- Проверены и **не** добавлены (не улучшили OOS): ансамбль tsmom по 3 периодам и фильтр тренда efficiency ratio для donchian.
 
 Пересчитывайте анализ раз в неделю/месяц (`scan_market.py` или workflow **Market scan**): набор монет и стратегий будет меняться.
 
@@ -39,7 +44,7 @@
 ```bash
 python -m unittest discover -s tests -v                    # тесты
 
-python scan_market.py                                      # анализ рынка, топ-15 ликвидных монет -> config/portfolio.json
+python scan_market.py                                      # анализ рынка, топ-30 ликвидных монет -> config/portfolio.json
 python scan_market.py --top 30 --max-sleeves 6
 python scan_market.py --symbols BTCUSDT ETHUSDT SOLUSDT
 
@@ -79,6 +84,17 @@ python trade.py --mode live --loop --i-understand-the-risk # реальные д
 - **Market scan** — по понедельникам или вручную; отчёт и `portfolio.json` в артефактах.
 - **Backtest + Walk-forward** — вручную для одной монеты.
 - **Signal monitor** — каждые 4 часа печатает сигналы портфеля (без ордеров).
+- **Paper trading** — каждые 4 часа ведёт бумажный счёт (состояние хранится в кэше Actions, сводка — в Summary запуска; `reset` — начать заново). Telegram-уведомления, если заданы секреты `TELEGRAM_BOT_TOKEN`/`TELEGRAM_CHAT_ID`.
+
+## Запуск 24/7 на сервере
+
+```bash
+docker build -t new_bot .
+docker run -d --restart=always -v $PWD/state:/app/state -v $PWD/logs:/app/logs new_bot            # paper
+docker run -d --restart=always --env-file .env -v $PWD/state:/app/state new_bot --mode demo         # Bitget demo
+```
+
+Без Docker — systemd-юнит [`deploy/new_bot.service`](deploy/new_bot.service). Сводка бумажного счёта: `python paper_report.py`.
 
 ## Структура
 
@@ -98,5 +114,5 @@ bot/notify.py       уведомления в Telegram
 
 - Отбор лучших пар из многих вариантов завышает OOS-цифры (multiple testing). Ориентируйтесь на контрольную проверку и бумажную торговлю.
 - Внутри свечи порядок движения цены неизвестен — стоп считается по худшему сценарию; ликвидация и глубина стакана не моделируются (при плече ≤ 2× и стопе ликвидация маловероятна).
-- В бэктесте «портфеля целиком» каждый слот может держать до 2× плеча; в `trade.py` дополнительно действует общий лимит 3×.
+- Лимиты живого бота в бэктесте портфеля приближённые: при суммарном плече > 3× слоты пропорционально уменьшаются, после дневной просадки 5% портфель стоит вне рынка до конца UTC-дня.
 - `BitgetBroker` проверен на подписи и формате запросов (моки), но реальные ордера из среды разработки не отправлялись: сначала прогоните `--mode demo`.

@@ -4,10 +4,10 @@ on:
     inputs:
       top:
         description: "How many most liquid USDT-M perpetuals to analyse"
-        default: "15"
+        default: "30"
       max_sleeves:
         description: "Max coin/strategy slots in the portfolio"
-        default: "5"
+        default: "6"
   schedule:
     - cron: "0 6 * * 1"   # every Monday, 06:00 UTC
 jobs:
@@ -22,8 +22,8 @@ jobs:
       - name: Scan market (read-only, no orders)
         run: >
           python scan_market.py
-          --top "${{ github.event.inputs.top || '15' }}"
-          --max-sleeves "${{ github.event.inputs.max_sleeves || '5' }}"
+          --top "${{ github.event.inputs.top || '30' }}"
+          --max-sleeves "${{ github.event.inputs.max_sleeves || '6' }}"
       - uses: actions/upload-artifact@v4
         with:
           name: market-scan

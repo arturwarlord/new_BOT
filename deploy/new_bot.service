@@ -1,0 +1,21 @@
+# systemd unit: copy to /etc/systemd/system/new_bot.service, adjust paths/user, then
+#   sudo systemctl daemon-reload && sudo systemctl enable --now new_bot
+# Keys for --mode demo/live go to /etc/new_bot.env (chmod 600):
+#   BITGET_API_KEY=...  BITGET_API_SECRET=...  BITGET_API_PASSPHRASE=...
+#   TELEGRAM_BOT_TOKEN=...  TELEGRAM_CHAT_ID=...
+[Unit]
+Description=new_BOT portfolio trader
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bot
+WorkingDirectory=/opt/new_BOT
+EnvironmentFile=-/etc/new_bot.env
+ExecStart=/usr/bin/python3 trade.py --mode paper --loop
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -6,7 +6,7 @@ from __future__ import annotations
 import math
 from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence
+from typing import Dict, List, Optional, Sequence, Tuple
 
 from . import data as D
 from . import indicators as ind
@@ -169,18 +169,45 @@ def select(ranked: List[dict], max_sleeves: int = 5, filters: Filters = Filters(
     return chosen
 
 
-def portfolio_curve(sleeves: List[dict], start_ts: Optional[int] = None,
-                    end_ts: Optional[int] = None):
+def _sleeve_series(wf: StrategyWF) -> Dict[int, Tuple[float, float]]:
+    """ts -> (bar return, exposure held into that bar)."""
+    out = {}
+    exp = wf.oos_exposure or [0.0] * len(wf.oos_ts)
+    for i in range(1, len(wf.oos_ts)):
+        out[wf.oos_ts[i]] = (wf.oos_equity[i] / wf.oos_equity[i - 1] - 1, exp[i - 1])
+    return out
+
+
+def portfolio_curve(sleeves: List[dict], start_ts: Optional[int] = None, end_ts: Optional[int] = None,
+                    max_total_leverage: Optional[float] = None, max_daily_loss: Optional[float] = None):
     """Each sleeve risks the same fraction of TOTAL equity, so portfolio bar returns are the sum of
-    sleeve bar returns (a sleeve without out-of-sample history yet contributes 0). Returns (ts, equity)."""
-    series = [_returns_by_ts(s["_wf"]) for s in sleeves]
+    sleeve bar returns (a sleeve without out-of-sample history yet contributes 0).
+
+    The live trader's limits are approximated: when the summed exposure exceeds `max_total_leverage`
+    every sleeve is scaled down pro rata, and after a `max_daily_loss` drawdown within a UTC day
+    the portfolio is flat until the next day. Returns (ts, equity)."""
+    series = [_sleeve_series(s["_wf"]) for s in sleeves]
     if not series:
         return [], []
     common = sorted(set.union(*(set(x) for x in series)))
     common = [t for t in common if (start_ts is None or t >= start_ts) and (end_ts is None or t < end_ts)]
     eq = [1.0]
+    day, day_start, halted = None, 1.0, False
     for t in common:
-        eq.append(eq[-1] * (1 + sum(x.get(t, 0.0) for x in series)))
+        d = t // 86_400_000
+        if d != day:
+            day, day_start, halted = d, eq[-1], False
+        if halted:
+            eq.append(eq[-1])
+            continue
+        rows = [x[t] for x in series if t in x]
+        r = sum(v[0] for v in rows)
+        gross = sum(v[1] for v in rows)
+        if max_total_leverage is not None and gross > max_total_leverage:
+            r *= max_total_leverage / gross
+        eq.append(eq[-1] * (1 + r))
+        if max_daily_loss is not None and eq[-1] < day_start * (1 - max_daily_loss):
+            halted = True
     return common, eq
 
 
