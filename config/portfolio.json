@@ -1,0 +1,166 @@
+{
+  "generated_at": "2026-10-26T13:00:48+00:00",
+  "granularity": "4H",
+  "risk": {
+    "risk_pct": 0.01,
+    "max_leverage": 2.0
+  },
+  "limits": {
+    "max_total_leverage": 3.0,
+    "max_daily_loss": 0.05
+  },
+  "costs": {
+    "fee_rate": 0.0006,
+    "slippage_rate": 0.0005
+  },
+  "sleeves": [
+    {
+      "symbol": "ARBUSDT",
+      "strategy": "donchian",
+      "params": {
+        "entry_n": 20,
+        "exit_n": 10,
+        "atr_stop": 2.5,
+        "allow_short": false
+      },
+      "weight": 0.1667,
+      "selected_as": "auto",
+      "oos": {
+        "oos_return": 0.487952918221503,
+        "oos_cagr": 0.18651169427648595,
+        "oos_max_drawdown": 0.050526736098942406,
+        "oos_sharpe": 1.7760888069518745,
+        "oos_trades": 101,
+        "folds": 10,
+        "positive_folds": 0.9
+      }
+    },
+    {
+      "symbol": "ENAUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 126,
+        "atr_stop": 3.0,
+        "allow_short": true
+      },
+      "weight": 0.1667,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.1543964444658863,
+        "oos_cagr": 0.1234612364828922,
+        "oos_max_drawdown": 0.07363316050953264,
+        "oos_sharpe": 1.3484427737062243,
+        "oos_trades": 54,
+        "folds": 5,
+        "positive_folds": 0.6
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 252,
+        "atr_stop": 5.0,
+        "allow_short": true
+      },
+      "weight": 0.1667,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.24742126305993328,
+        "oos_cagr": 0.08490778729758452,
+        "oos_max_drawdown": 0.053612774037709504,
+        "oos_sharpe": 1.233832952734559,
+        "oos_trades": 90,
+        "folds": 11,
+        "positive_folds": 0.9090909090909091
+      }
+    },
+    {
+      "symbol": "ETHUSDT",
+      "strategy": "donchian",
+      "params": {
+        "entry_n": 100,
+        "exit_n": 10,
+        "atr_stop": 2.5,
+        "allow_short": true
+      },
+      "weight": 0.1667,
+      "selected_as": "donchian",
+      "oos": {
+        "oos_return": 0.2525608940270949,
+        "oos_cagr": 0.08655341728985166,
+        "oos_max_drawdown": 0.07800121995762549,
+        "oos_sharpe": 1.1760352085498016,
+        "oos_trades": 64,
+        "folds": 11,
+        "positive_folds": 0.6363636363636364
+      }
+    },
+    {
+      "symbol": "XLMUSDT",
+      "strategy": "donchian",
+      "params": {
+        "entry_n": 55,
+        "exit_n": 10,
+        "atr_stop": 2.5,
+        "allow_short": false
+      },
+      "weight": 0.1667,
+      "selected_as": "auto",
+      "oos": {
+        "oos_return": 0.38034991273952423,
+        "oos_cagr": 0.1261687953396069,
+        "oos_max_drawdown": 0.07101468259014754,
+        "oos_sharpe": 1.1263659092261387,
+        "oos_trades": 137,
+        "folds": 11,
+        "positive_folds": 0.7272727272727273
+      }
+    },
+    {
+      "symbol": "SUIUSDT",
+      "strategy": "tsmom",
+      "params": {
+        "lookback": 126,
+        "atr_stop": 3.0,
+        "allow_short": true
+      },
+      "weight": 0.1667,
+      "selected_as": "tsmom",
+      "oos": {
+        "oos_return": 0.20786423378328034,
+        "oos_cagr": 0.08924819030995401,
+        "oos_max_drawdown": 0.07749152850070973,
+        "oos_sharpe": 1.061324130962475,
+        "oos_trades": 81,
+        "folds": 9,
+        "positive_folds": 0.7777777777777778
+      }
+    }
+  ],
+  "backtest_portfolio_oos": {
+    "return": 3.257798673176765,
+    "cagr": 0.7012492551036147,
+    "max_drawdown": 0.16376416149840428,
+    "sharpe": 2.0618628744007155,
+    "from": "2024-02-04",
+    "to": "2026-10-26",
+    "btc_buy_hold": 0.8730281155192259
+  },
+  "holdout_check": {
+    "from": "2026-04-29",
+    "sleeves": [
+      "ETHUSDT:tsmom",
+      "ARBUSDT:auto",
+      "DOGEUSDT:tsmom",
+      "BTCUSDT:tsmom",
+      "XLMUSDT:auto",
+      "SUIUSDT:ema_trend"
+    ],
+    "return": 0.3906724423026622,
+    "cagr": 0.9493567654027082,
+    "max_drawdown": 0.146651138238717,
+    "sharpe": 1.9669020118521119,
+    "btc_buy_hold": 0.0366117082669728
+  }
+}
