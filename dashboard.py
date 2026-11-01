@@ -518,7 +518,7 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
 
     nav = [("paper", "Бумажный счёт"), ("validation", "Walk-forward"), ("expect", "Ожидания"), ("signals", "Сигналы"), ("portfolio", "Портфель и бэктест"),
            ("market", "Анализ рынка")]
-    nav = [(a, b) for a, b in nav if a != "signals" or signals is not None]
+    nav = [(a, b) for a, b in nav if (a != "signals" or signals is not None) and (a != "validation" or validation)]
     return (f'<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{esc(title)}</title><style>{CSS}</style></head><body>'
             f'<header><h1>{esc(title)}</h1><div class="mut">Обновлено {utc(now_ms)} UTC · режим: paper · '
