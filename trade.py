@@ -58,7 +58,7 @@ def main() -> int:
     pl = pf.get("limits", {})
     limits = Limits(a.max_total_leverage or pl.get("max_total_leverage", 3.0),
                     a.max_daily_loss or pl.get("max_daily_loss", 0.05))
-    log.info("mode=%s broker=%s portfolio=%s sleeves=%s", a.mode, broker.name, a.portfolio if hasattr(a, "portfolio") else "configured",
+    log.info("mode=%s broker=%s portfolio=%s sleeves=%s", a.mode, broker.name, a.portfolio,
              ", ".join(f"{s['symbol']}:{s['strategy']}" for s in pf["sleeves"]))
 
     while True:
