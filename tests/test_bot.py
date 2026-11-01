@@ -236,6 +236,8 @@ class TraderTests(unittest.TestCase):
             pos = broker.position("AAA")
             self.assertIsNotNone(pos, ev)
             self.assertEqual(pos.side, 1)
+            self.assertAlmostEqual(pos.entry, up.open[999], places=8)  # signal at 998, fill at next open 999
+            self.assertEqual(state.s["opened_bar"]["AAA"], up.ts[999])
             self.assertLess(pos.stop, pos.entry)
             # crash through the stop on the next bar -> paper stop fires, side locked, no re-entry
             crash = up.slice(0, 1001)
@@ -307,6 +309,7 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("+20.00", out)           # unrealized (110 - 100) * 2
         self.assertIn("+9.80", out)            # realized pnl net of the opening fee
         self.assertIn("ETHUSDT", out)
+        self.assertIn("Ожидание не нанесено", out)
 
     def test_record_replaces_recent_snapshot(self):
         import dashboard as dash
