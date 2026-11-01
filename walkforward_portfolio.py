@@ -38,6 +38,47 @@ def iso(ts):
     return dt.datetime.fromtimestamp(ts / 1000, dt.timezone.utc).isoformat()
 
 
+def align_market(market, symbols):
+    """Align symbols to their longest shared contiguous 4H timestamp segment."""
+    step = D.GRANULARITY_MS["4H"]
+    common = set(market[symbols[0]][0].ts)
+    for symbol in symbols[1:]:
+        common.intersection_update(market[symbol][0].ts)
+    timestamps = sorted(common)
+    if not timestamps:
+        raise ValueError("The configured symbols have no common candle timestamps")
+
+    # Do not silently compress missing bars: retain only the longest contiguous segment.
+    segments = []
+    start = 0
+    for i in range(1, len(timestamps)):
+        if timestamps[i] - timestamps[i - 1] != step:
+            segments.append(timestamps[start:i])
+            start = i
+    segments.append(timestamps[start:])
+    timestamps = max(segments, key=len)
+    if len(timestamps) < 2:
+        raise ValueError("Not enough shared contiguous candles after aligning symbols")
+
+    aligned = {}
+    for symbol in symbols:
+        candles, funding = market[symbol]
+        positions = {timestamp: i for i, timestamp in enumerate(candles.ts)}
+        indices = [positions[t] for t in timestamps]
+        aligned[symbol] = (
+            D.Candles(
+                timestamps[:],
+                [candles.open[i] for i in indices],
+                [candles.high[i] for i in indices],
+                [candles.low[i] for i in indices],
+                [candles.close[i] for i in indices],
+                [candles.volume[i] for i in indices],
+            ),
+            [funding[i] for i in indices],
+        )
+    return aligned
+
+
 def evaluate(config, market, train_bars=2190, test_bars=540, warmup=600,
              initial=10_000.0, cost_multiplier=1.0, v2_risk_pct=None):
     gran = config.get("granularity", "4H")
@@ -50,9 +91,8 @@ def evaluate(config, market, train_bars=2190, test_bars=540, warmup=600,
     missing = [s for s in symbols if s not in market]
     if missing:
         raise ValueError("Missing market data: " + ", ".join(missing))
+    market = align_market(market, symbols)
     lengths = {len(market[s][0]) for s in symbols}
-    if len(lengths) != 1:
-        raise ValueError("All symbols must have the same candle count for aligned folds")
     n = lengths.pop()
     folds = fold_bounds(n, warmup, train_bars, test_bars)
     if len(folds) < 2:
