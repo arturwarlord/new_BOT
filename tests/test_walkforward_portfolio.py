@@ -2,7 +2,7 @@ import unittest
 
 from bot.data import synthetic
 from bot.engine import Costs, Risk
-from walkforward_portfolio import evaluate, select_candidate
+from walkforward_portfolio import align_market, evaluate, select_candidate
 
 
 class WalkForwardPortfolioTests(unittest.TestCase):
@@ -35,6 +35,20 @@ class WalkForwardPortfolioTests(unittest.TestCase):
             None if first is None else (first.strategy, first.params),
             None if second is None else (second.strategy, second.params),
         )
+
+
+    def test_aligns_different_listing_dates_without_compressing_gaps(self):
+        first = synthetic(n=1000, seed=1)
+        second = synthetic(n=900, seed=2)
+        second.ts = first.ts[100:]
+        market = {
+            "AAAUSDT": (first, [0.0] * len(first)),
+            "BBBUSDT": (second, [0.0] * len(second)),
+        }
+        aligned = align_market(market, ["AAAUSDT", "BBBUSDT"])
+        self.assertEqual(len(aligned["AAAUSDT"][0]), 900)
+        self.assertEqual(aligned["AAAUSDT"][0].ts, aligned["BBBUSDT"][0].ts)
+        self.assertEqual(aligned["AAAUSDT"][0].ts[0], first.ts[100])
 
     def test_walkforward_compares_same_selections_at_two_risk_levels(self):
         c = synthetic(n=1900, seed=23, drift=0.0002, vol=0.009)
