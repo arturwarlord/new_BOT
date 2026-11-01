@@ -93,6 +93,9 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
             continue
         decisions[sym] = decide(sl, c.slice(0, len(c) - 1))
 
+    # Preserve equity at the signal close for sizing; the execution candle may gap.
+    signal_equity = broker.equity()
+
     # A trailing stop calculated at the signal candle close must protect the following candle.
     for sl in pf["sleeves"]:
         sym = sl["symbol"]
@@ -136,7 +139,7 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
                    for sl in pf["sleeves"] if (p := broker.position(sl["symbol"])) is not None)
 
     # Equity for sizing is the equity at the signal close, before the execution candle's move.
-    sizing_equity = equity
+    sizing_equity = signal_equity
     for sl in pf["sleeves"]:
         sym = sl["symbol"]
         c, d = candles[sym], decisions.get(sym)
