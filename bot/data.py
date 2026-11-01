@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import csv
+import datetime as dt
 import json
 import math
 import os
@@ -103,16 +104,43 @@ def fetch_bitget(symbol: str, granularity: str, days: int, product_type: str = P
     return c.slice(keep[0], keep[-1] + 1) if keep else c
 
 
+def candles_are_recent(c: Candles, granularity: str, now_ms: Optional[int] = None,
+                      max_lag_bars: int = 2) -> bool:
+    """Return whether the newest candle is close to the latest fully closed bar.
+
+    Cache file modification times are not reliable after CI cache restore: an old
+    multi-year dataset can look freshly written while its market data is weeks stale.
+    Allow two missing bars for normal exchange/API publication delays.
+    """
+    if not c.ts:
+        return False
+    step = GRANULARITY_MS[granularity]
+    now_ms = int(time.time() * 1000) if now_ms is None else now_ms
+    latest_closed_open = now_ms - (now_ms % step) - step
+    return c.ts[-1] >= latest_closed_open - max_lag_bars * step
+
+
 def load_or_fetch(symbol: str, granularity: str, days: int, cache_dir: str = "data",
                   max_age_s: float = 6 * 3600) -> Candles:
-    """Cached download: reuses data/<symbol>_<granularity>.csv when it is fresh and long enough."""
+    """Reuse cache only when its age, historical coverage, and newest candle are all valid."""
     path = os.path.join(cache_dir, f"{symbol}_{granularity}.csv")
-    if os.path.exists(path) and time.time() - os.path.getmtime(path) < max_age_s:
+    now_s = time.time()
+    now_ms = int(now_s * 1000)
+    need = days * 24 * 3_600_000 * 0.97
+    if os.path.exists(path) and now_s - os.path.getmtime(path) < max_age_s:
         c = load_csv(path)
-        need = days * 24 * 3_600_000 * 0.97
-        if len(c) and c.ts[-1] - c.ts[0] >= need:
+        if (len(c) and c.ts[-1] - c.ts[0] >= need
+                and candles_are_recent(c, granularity, now_ms)):
             return c
+
     c = fetch_bitget(symbol, granularity, days)
+    if not candles_are_recent(c, granularity):
+        step = GRANULARITY_MS[granularity]
+        latest = dt.datetime.fromtimestamp(c.ts[-1] / 1000, dt.timezone.utc).isoformat() if c.ts else "no candles"
+        raise RuntimeError(
+            f"Bitget returned stale candles for {symbol} {granularity} "
+            f"(latest: {latest}; allowed lag: 2 bars). Refusing to publish stale analysis."
+        )
     save_csv(c, path)
     return c
 
