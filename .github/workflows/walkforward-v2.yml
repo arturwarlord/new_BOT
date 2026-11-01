@@ -40,17 +40,17 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: data/
-          key: walkforward-market-data-\${{ runner.os }}-\${{ github.run_id }}
+          key: walkforward-market-data-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
-            walkforward-market-data-\${{ runner.os }}-
+            walkforward-market-data-${{ runner.os }}-
       - name: Run unit tests
         run: python -m unittest discover -s tests -p 'test_walkforward_portfolio.py' -v
       - name: Run rolling walk-forward and cost stress tests (read-only)
         run: |
           python walkforward_portfolio.py \
-            --days "\${{ github.event.inputs.days || '1460' }}" \
-            --train-bars "\${{ github.event.inputs.train_bars || '2190' }}" \
-            --test-bars "\${{ github.event.inputs.test_bars || '540' }}"
+            --days "${{ github.event.inputs.days || '1460' }}" \
+            --train-bars "${{ github.event.inputs.train_bars || '2190' }}" \
+            --test-bars "${{ github.event.inputs.test_bars || '540' }}"
       - uses: actions/upload-artifact@v4
         with:
           name: v2-walkforward-validation
@@ -60,4 +60,4 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: data/
-          key: walkforward-market-data-\${{ runner.os }}-\${{ github.run_id }}
+          key: walkforward-market-data-${{ runner.os }}-${{ github.run_id }}
