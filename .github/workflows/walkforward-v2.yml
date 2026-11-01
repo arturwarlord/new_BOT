@@ -1,0 +1,63 @@
+name: Walk-forward validation (control vs V2)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'walkforward_portfolio.py'
+      - 'tests/test_walkforward_portfolio.py'
+      - 'config/portfolio*.json'
+      - '.github/workflows/walkforward-v2.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'walkforward_portfolio.py'
+      - 'tests/test_walkforward_portfolio.py'
+      - 'config/portfolio*.json'
+      - '.github/workflows/walkforward-v2.yml'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Historical data window in days"
+        default: "1460"
+      train_bars:
+        description: "Training window (4H bars)"
+        default: "2190"
+      test_bars:
+        description: "Out-of-sample test window (4H bars)"
+        default: "540"
+  schedule:
+    - cron: "41 5 1 * *"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore market data cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/
+          key: walkforward-market-data-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            walkforward-market-data-${{ runner.os }}-
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -p 'test_walkforward_portfolio.py' -v
+      - name: Run rolling walk-forward and cost stress tests (read-only)
+        run: |
+          python walkforward_portfolio.py \
+            --days "${{ github.event.inputs.days || '1460' }}" \
+            --train-bars "${{ github.event.inputs.train_bars || '2190' }}" \
+            --test-bars "${{ github.event.inputs.test_bars || '540' }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-walkforward-validation
+          path: reports/v2_walkforward_validation.json
+      - name: Save market data cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/
+          key: walkforward-market-data-${{ runner.os }}-${{ github.run_id }}
