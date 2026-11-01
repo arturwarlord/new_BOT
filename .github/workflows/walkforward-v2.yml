@@ -29,6 +29,7 @@ on:
     - cron: "41 5 1 * *"
 permissions:
   contents: write
+  actions: write
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -69,6 +70,11 @@ jobs:
           fi
           git commit -m "Update walk-forward validation report"
           git push origin HEAD:main
+      - name: Refresh public dashboard with latest validation
+        if: success() && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run paper.yml --ref main
       - name: Save market data cache
         if: always()
         uses: actions/cache/save@v4
