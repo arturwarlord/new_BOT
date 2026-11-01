@@ -251,8 +251,67 @@ def table(head: List[str], rows: List[List[str]], scroll: bool = False) -> str:
     return f'<div class="{"scroll" if scroll else "wrap"}">{t}</div>'
 
 
+def validation_section(validation: Optional[dict]) -> str:
+    """Render the latest rolling walk-forward validation and cost stress results."""
+    scenarios = (validation or {}).get("scenarios", [])
+    if not scenarios:
+        return ""
+    rows = []
+    for scenario in scenarios:
+        control, v2 = scenario.get("control", {}), scenario.get("v2", {})
+        rows.append([
+            f'{scenario.get("cost_multiplier", 1):g}×',
+            f'<span class="{cls(control.get("return"))}">{pct(control.get("return"))}</span>',
+            pct(control.get("max_drawdown"), False),
+            f'{control.get("sharpe", 0):.2f}',
+            f'<span class="{cls(v2.get("return"))}">{pct(v2.get("return"))}</span>',
+            pct(v2.get("max_drawdown"), False),
+            f'{v2.get("sharpe", 0):.2f}',
+            f'{control.get("positive_folds", 0)}/{control.get("fold_count", scenario.get("fold_count", 0))}',
+            f'{v2.get("positive_folds", 0)}/{v2.get("fold_count", scenario.get("fold_count", 0))}',
+        ])
+    first = scenarios[0]
+    folds = first.get("folds", [])
+    control_returns = first.get("control", {}).get("fold_returns", [])
+    v2_returns = first.get("v2", {}).get("fold_returns", [])
+    fold_rows = []
+    for i, fold in enumerate(folds):
+        c_ret = control_returns[i] if i < len(control_returns) else None
+        v_ret = v2_returns[i] if i < len(v2_returns) else None
+        fold_rows.append([
+            str(fold.get("fold", i + 1)),
+            esc(str(fold.get("test_from", "—"))[:10]),
+            esc(str(fold.get("test_to_exclusive", "—"))[:10]),
+            "—" if c_ret is None else f'<span class="{cls(c_ret)}">{pct(c_ret)}</span>',
+            "—" if v_ret is None else f'<span class="{cls(v_ret)}">{pct(v_ret)}</span>',
+        ])
+    generated = (validation or {}).get("generated_at", "—")
+    date_range = f'{first.get("test_from", "—")} → {first.get("test_to", "—")}'
+    out = [
+        '<section id="validation"><h2>Независимая walk-forward проверка</h2>',
+        f'<p class="mut">Последний расчёт: {esc(generated)} UTC · тестовый диапазон: {esc(date_range)} · '
+        f'{first.get("fold_count", 0)} последовательных окон. Параметры выбираются на прошлом годе и '
+        'проверяются на следующем трёхмесячном отрезке. Для контроля и V2 используются одинаковые '
+        'выбранные параметры.</p>',
+        table(["Издержки", "Контроль: доходность", "Контроль: просадка", "Sharpe", "V2: доходность",
+               "V2: просадка", "Sharpe", "Контроль: плюсовые окна", "V2: плюсовые окна"], rows),
+    ]
+    if fold_rows:
+        out.extend([
+            "<h3>Результаты по отдельным тестовым окнам (базовые издержки)</h3>",
+            table(["Окно", "С", "По", "Контроль 1%", "V2 0,5%"], fold_rows),
+        ])
+    caveats = (validation or {}).get("caveats", [])
+    if caveats:
+        out.append('<p class="mut">' + " ".join(esc(x) for x in caveats) + "</p>")
+    out.append('<p class="mut">Историческая симуляция, не прогноз и не гарантия. Реальные ордера этим тестом не отправляются.</p>')
+    out.append("</section>")
+    return "".join(out)
+
+
 def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signals: Optional[List[dict]] = None,
-          initial: float = 10_000.0, now_ms: Optional[int] = None, title: str = "new_BOT — дашборд") -> str:
+          initial: float = 10_000.0, now_ms: Optional[int] = None, title: str = "new_BOT — дашборд",
+          validation: Optional[dict] = None) -> str:
     now_ms = now_ms or int(time.time() * 1000)
     holdout = pf.get("holdout_check") or {}
     full = pf.get("backtest_portfolio_oos") or {}
@@ -330,6 +389,10 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
     else:
         P.append('<div class="empty">Закрытых сделок пока нет</div>')
     P.append("</section>")
+
+    # ---------------- walk-forward validation
+    if validation:
+        P.append(validation_section(validation))
 
     # ---------------- expectations
     P.append('<section id="expect"><h2>Предполагаемая прибыль и убыток</h2>')
@@ -453,9 +516,9 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
         P.append('<p class="mut">Не удалось загрузить: ' + esc(", ".join(scan["errors"])) + "</p>")
     P.append("</section>")
 
-    nav = [("paper", "Бумажный счёт"), ("expect", "Ожидания"), ("signals", "Сигналы"), ("portfolio", "Портфель и бэктест"),
+    nav = [("paper", "Бумажный счёт"), ("validation", "Walk-forward"), ("expect", "Ожидания"), ("signals", "Сигналы"), ("portfolio", "Портфель и бэктест"),
            ("market", "Анализ рынка")]
-    nav = [(a, b) for a, b in nav if a != "signals" or signals is not None]
+    nav = [(a, b) for a, b in nav if (a != "signals" or signals is not None) and (a != "validation" or validation)]
     return (f'<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>{esc(title)}</title><style>{CSS}</style></head><body>'
             f'<header><h1>{esc(title)}</h1><div class="mut">Обновлено {utc(now_ms)} UTC · режим: paper · '
@@ -487,6 +550,7 @@ def main() -> int:
     pf, scan = load(a.portfolio, {}), load(a.scan, {})
     acc = load(a.account, {"balance": a.initial, "positions": {}, "marks": {}, "history": []})
     hist = record(acc, a.history) if a.record and os.path.exists(a.account) else load(a.history, [])
+    validation = load("reports/v2_walkforward_validation.json", {})
     signals = None
     if a.signals and pf.get("sleeves"):
         try:
@@ -496,7 +560,7 @@ def main() -> int:
             print(f"signals unavailable: {e}", file=sys.stderr)
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w") as f:
-        f.write(build(pf, scan, load(a.curves, {}), acc, hist, signals, a.initial, title=a.title))
+        f.write(build(pf, scan, load(a.curves, {}), acc, hist, signals, a.initial, title=a.title, validation=validation))
     print(f"Saved {a.out}")
     return 0
 
