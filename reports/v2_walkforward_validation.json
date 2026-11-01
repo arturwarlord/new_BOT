@@ -1,0 +1,1092 @@
+{
+  "generated_at": "2026-11-01T23:20:47.986366+00:00",
+  "granularity": "4H",
+  "days_requested": 1460,
+  "initial_equity_usdt": 10000.0,
+  "symbols": [
+    "ARBUSDT",
+    "ENAUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "XLMUSDT",
+    "SUIUSDT"
+  ],
+  "method": "Rolling chronological walk-forward. Each deployed sleeve keeps its configured strategy family; parameters are selected only on the preceding training window and frozen for the next non-overlapping test window. The same selections are replayed at control and half risk. Positions close at fold boundaries.",
+  "selection_rule": "Training-window CAGR / max(5% drawdown, observed max drawdown), minimum 5 trades; selected using control risk.",
+  "caveats": [
+    "This validates the configured strategy families, not a newly optimized portfolio universe.",
+    "Portfolio leverage and daily-loss aggregation reuse bot.scanner.portfolio_curve and remain an approximation.",
+    "Cost stress scenarios reselect parameters within each training window at the corresponding cost level.",
+    "Historical results do not guarantee future performance."
+  ],
+  "scenarios": [
+    {
+      "cost_multiplier": 1.0,
+      "costs": {
+        "fee_rate_per_side": 0.0006,
+        "slippage_rate_per_fill": 0.0005
+      },
+      "train_bars": 2190,
+      "test_bars": 540,
+      "warmup_bars": 600,
+      "fold_count": 5,
+      "test_from": "2025-07-13T00:00:00+00:00",
+      "test_to": "2026-10-06T00:00:00+00:00",
+      "same_selected_parameters_for_risk_comparison": true,
+      "control": {
+        "risk_pct": 0.01,
+        "return": 0.9594684092917376,
+        "cagr": 0.7253168525416633,
+        "max_drawdown": 0.12334826121857355,
+        "sharpe": 2.022465564604731,
+        "trades": 244,
+        "win_rate": 0.3729508196721312,
+        "profit_factor": 1.9507080276614306,
+        "positive_folds": 4,
+        "fold_count": 5,
+        "fold_returns": [
+          0.11119157199700003,
+          -0.05733084249706788,
+          0.010231089461660181,
+          0.21591539207380883,
+          0.5228809135215076
+        ],
+        "equity_points": 2701
+      },
+      "v2": {
+        "risk_pct": 0.005,
+        "return": 0.4201783597862707,
+        "cagr": 0.328988621876682,
+        "max_drawdown": 0.06265856343223093,
+        "sharpe": 2.0030220425670886,
+        "trades": 244,
+        "win_rate": 0.3729508196721312,
+        "profit_factor": 1.9556316881764269,
+        "positive_folds": 4,
+        "fold_count": 5,
+        "fold_returns": [
+          0.05607294569493049,
+          -0.028139887618869763,
+          0.006072596445984457,
+          0.1055241121399666,
+          0.24407819050004598
+        ],
+        "equity_points": 2701
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "train_from": "2024-07-13T00:00:00+00:00",
+          "train_to_exclusive": "2025-07-13T00:00:00+00:00",
+          "test_from": "2025-07-13T00:00:00+00:00",
+          "test_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 20,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "train_from": "2024-10-11T00:00:00+00:00",
+          "train_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "test_from": "2025-10-11T00:00:00+00:00",
+          "test_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 5.0,
+                "allow_short": false
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "train_from": "2025-01-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "test_from": "2026-01-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "train_from": "2025-04-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "test_from": "2026-04-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 5,
+          "train_from": "2025-07-08T00:00:00+00:00",
+          "train_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "test_from": "2026-07-08T00:00:00+00:00",
+          "test_to_exclusive": "2026-10-06T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 100,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cost_multiplier": 1.5,
+      "costs": {
+        "fee_rate_per_side": 0.0009,
+        "slippage_rate_per_fill": 0.00075
+      },
+      "train_bars": 2190,
+      "test_bars": 540,
+      "warmup_bars": 600,
+      "fold_count": 5,
+      "test_from": "2025-07-13T00:00:00+00:00",
+      "test_to": "2026-10-06T00:00:00+00:00",
+      "same_selected_parameters_for_risk_comparison": true,
+      "control": {
+        "risk_pct": 0.01,
+        "return": 0.9096119162989735,
+        "cagr": 0.6896367126346594,
+        "max_drawdown": 0.12090250048930397,
+        "sharpe": 1.973695276493386,
+        "trades": 233,
+        "win_rate": 0.3776824034334764,
+        "profit_factor": 1.9407154622333518,
+        "positive_folds": 4,
+        "fold_count": 5,
+        "fold_returns": [
+          0.1006148095511259,
+          -0.022050965535129752,
+          0.003978423556812327,
+          0.1748160003602699,
+          0.5041782663160037
+        ],
+        "equity_points": 2701
+      },
+      "v2": {
+        "risk_pct": 0.005,
+        "return": 0.4014517695400468,
+        "cagr": 0.31476203137410375,
+        "max_drawdown": 0.06317203955952322,
+        "sharpe": 1.9545047492280152,
+        "trades": 233,
+        "win_rate": 0.3776824034334764,
+        "profit_factor": 1.9474154674663513,
+        "positive_folds": 4,
+        "fold_count": 5,
+        "fold_returns": [
+          0.051031939127159864,
+          -0.010201893269087603,
+          0.002955945249977665,
+          0.08637031770583592,
+          0.23639111532622858
+        ],
+        "equity_points": 2701
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "train_from": "2024-07-13T00:00:00+00:00",
+          "train_to_exclusive": "2025-07-13T00:00:00+00:00",
+          "test_from": "2025-07-13T00:00:00+00:00",
+          "test_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 20,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "train_from": "2024-10-11T00:00:00+00:00",
+          "train_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "test_from": "2025-10-11T00:00:00+00:00",
+          "test_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 5.0,
+                "allow_short": false
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "train_from": "2025-01-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "test_from": "2026-01-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "train_from": "2025-04-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "test_from": "2026-04-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 5,
+          "train_from": "2025-07-08T00:00:00+00:00",
+          "train_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "test_from": "2026-07-08T00:00:00+00:00",
+          "test_to_exclusive": "2026-10-06T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 100,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "cost_multiplier": 2.0,
+      "costs": {
+        "fee_rate_per_side": 0.0012,
+        "slippage_rate_per_fill": 0.001
+      },
+      "train_bars": 2190,
+      "test_bars": 540,
+      "warmup_bars": 600,
+      "fold_count": 5,
+      "test_from": "2025-07-13T00:00:00+00:00",
+      "test_to": "2026-10-06T00:00:00+00:00",
+      "same_selected_parameters_for_risk_comparison": true,
+      "control": {
+        "risk_pct": 0.01,
+        "return": 0.8634446095746195,
+        "cagr": 0.656439318897327,
+        "max_drawdown": 0.12398744620212684,
+        "sharpe": 1.9341731839791143,
+        "trades": 215,
+        "win_rate": 0.39069767441860465,
+        "profit_factor": 1.964547755097899,
+        "positive_folds": 5,
+        "fold_count": 5,
+        "fold_returns": [
+          0.09013556956784585,
+          0.0018515898307056577,
+          0.0010665272239021029,
+          0.16541504892781367,
+          0.4624769305082117
+        ],
+        "equity_points": 2701
+      },
+      "v2": {
+        "risk_pct": 0.005,
+        "return": 0.38366003248661174,
+        "cagr": 0.30121229797304006,
+        "max_drawdown": 0.0637875783262077,
+        "sharpe": 1.9151578640313922,
+        "trades": 215,
+        "win_rate": 0.39069767441860465,
+        "profit_factor": 1.9727357487582373,
+        "positive_folds": 5,
+        "fold_count": 5,
+        "fold_returns": [
+          0.04601425313193297,
+          0.0016771568900753042,
+          0.001387718330253973,
+          0.0820112371189714,
+          0.21879311563197712
+        ],
+        "equity_points": 2701
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "train_from": "2024-07-13T00:00:00+00:00",
+          "train_to_exclusive": "2025-07-13T00:00:00+00:00",
+          "test_from": "2025-07-13T00:00:00+00:00",
+          "test_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 20,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 2,
+          "train_from": "2024-10-11T00:00:00+00:00",
+          "train_to_exclusive": "2025-10-11T00:00:00+00:00",
+          "test_from": "2025-10-11T00:00:00+00:00",
+          "test_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 5.0,
+                "allow_short": false
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            }
+          }
+        },
+        {
+          "fold": 3,
+          "train_from": "2025-01-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-01-09T00:00:00+00:00",
+          "test_from": "2026-01-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 126,
+                "atr_stop": 5.0,
+                "allow_short": false
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": false
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 4,
+          "train_from": "2025-04-09T00:00:00+00:00",
+          "train_to_exclusive": "2026-04-09T00:00:00+00:00",
+          "test_from": "2026-04-09T00:00:00+00:00",
+          "test_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": false
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        },
+        {
+          "fold": 5,
+          "train_from": "2025-07-08T00:00:00+00:00",
+          "train_to_exclusive": "2026-07-08T00:00:00+00:00",
+          "test_from": "2026-07-08T00:00:00+00:00",
+          "test_to_exclusive": "2026-10-06T00:00:00+00:00",
+          "selected": {
+            "ARBUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 20,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "ENAUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            },
+            "BTCUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 252,
+                "atr_stop": 5.0,
+                "allow_short": true
+              }
+            },
+            "ETHUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 100,
+                "exit_n": 10,
+                "atr_stop": 2.5,
+                "allow_short": true
+              }
+            },
+            "XLMUSDT": {
+              "strategy": "donchian",
+              "params": {
+                "entry_n": 55,
+                "exit_n": 10,
+                "atr_stop": 3.5,
+                "allow_short": false
+              }
+            },
+            "SUIUSDT": {
+              "strategy": "tsmom",
+              "params": {
+                "lookback": 42,
+                "atr_stop": 3.0,
+                "allow_short": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
