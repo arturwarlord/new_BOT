@@ -190,6 +190,11 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
                     stop = execution_price - target * d.stop_dist
                     broker.prepare(sym, int(risk["max_leverage"]) + 1)
                     broker.open(sym, target, qty, execution_price, stop, execution_ts)
+                    # The execution candle is already closed when this scheduled job runs.
+                    # Replay it now with the initial stop, before any later trailing update.
+                    entry_stop_event = broker.sync(sym, c)
+                    if entry_stop_event:
+                        events.append(entry_stop_event)
                     s["held"][sym] = target
                     s["opened_bar"][sym] = execution_ts
                     s["stops"][sym] = stop
