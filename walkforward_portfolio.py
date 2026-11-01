@@ -39,7 +39,7 @@ def iso(ts):
 
 
 def evaluate(config, market, train_bars=2190, test_bars=540, warmup=600,
-             initial=10_000.0, cost_multiplier=1.0):
+             initial=10_000.0, cost_multiplier=1.0, v2_risk_pct=None):
     gran = config.get("granularity", "4H")
     if gran != "4H":
         raise ValueError("Walk-forward runner currently requires 4H candles")
@@ -64,7 +64,7 @@ def evaluate(config, market, train_bars=2190, test_bars=540, warmup=600,
     selection_risk = Risk(config["risk"]["risk_pct"], max_lev)
     risks = {
         "control": Risk(config["risk"]["risk_pct"], max_lev),
-        "v2": Risk(config["risk"]["risk_pct"] * 0.5, max_lev),
+        "v2": Risk(v2_risk_pct if v2_risk_pct is not None else config["risk"]["risk_pct"] * 0.5, max_lev),
     }
     curves = {label: [] for label in risks}
     pnls = {label: [] for label in risks}
@@ -214,7 +214,7 @@ def main():
         raise ValueError("Cost multipliers must be >= 1")
     scenarios = [
         evaluate(control, market, args.train_bars, args.test_bars, args.warmup,
-                 args.initial, multiplier)
+                 args.initial, multiplier, experiment["risk"]["risk_pct"])
         for multiplier in multipliers
     ]
     payload = {
