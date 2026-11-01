@@ -1,6 +1,7 @@
 import unittest
 
-from compare_portfolios import validate_configs
+from compare_portfolios import replay, validate_configs
+from bot.data import synthetic
 
 
 class PortfolioComparisonTests(unittest.TestCase):
@@ -31,6 +32,24 @@ class PortfolioComparisonTests(unittest.TestCase):
         experiment["risk"]["risk_pct"] = 0.01
         with self.assertRaisesRegex(ValueError, "lower"):
             validate_configs(control, experiment)
+
+    def test_replay_produces_portfolio_curve_offline(self):
+        c = synthetic(n=900, seed=23, drift=0.0002, vol=0.008)
+        cfg = {
+            "granularity": "4H",
+            "risk": {"risk_pct": 0.005, "max_leverage": 2.0},
+            "costs": {"fee_rate": 0.0006, "slippage_rate": 0.0005},
+            "limits": {"max_total_leverage": 3.0, "max_daily_loss": 0.05},
+            "sleeves": [{
+                "symbol": "BTCUSDT",
+                "strategy": "tsmom",
+                "params": {"lookback": 126, "atr_stop": 3.0, "allow_short": True},
+            }],
+        }
+        result = replay(cfg, {"BTCUSDT": (c, [0.0] * len(c))}, 900, 10_000.0)
+        self.assertEqual(result["risk_pct"], 0.005)
+        self.assertGreater(len(result["series"]), 1)
+        self.assertTrue(all(point[1] > 0 for point in result["series"]))
 
 
 if __name__ == "__main__":
