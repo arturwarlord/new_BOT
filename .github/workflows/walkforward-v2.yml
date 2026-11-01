@@ -7,6 +7,13 @@ on:
       - 'tests/test_walkforward_portfolio.py'
       - 'config/portfolio*.json'
       - '.github/workflows/walkforward-v2.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'walkforward_portfolio.py'
+      - 'tests/test_walkforward_portfolio.py'
+      - 'config/portfolio*.json'
+      - '.github/workflows/walkforward-v2.yml'
   workflow_dispatch:
     inputs:
       days:
