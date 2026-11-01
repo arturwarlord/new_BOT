@@ -1,0 +1,38 @@
+name: Compare portfolio V2 (same data)
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Historical data window in days"
+        default: "1460"
+  schedule:
+    - cron: "17 5 1 * *"
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore market data cache
+        uses: actions/cache/restore@v4
+        with:
+          path: data/
+          key: portfolio-compare-data-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            portfolio-compare-data-${{ runner.os }}-
+      - name: Compare control and V2 on identical data (read-only)
+        run: |
+          python compare_portfolios.py --days "${{ github.event.inputs.days || '1460' }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v2-portfolio-comparison
+          path: reports/v2_comparison.json
+      - name: Save market data cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/
+          key: portfolio-compare-data-${{ runner.os }}-${{ github.run_id }}
