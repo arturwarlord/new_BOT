@@ -252,7 +252,7 @@ def table(head: List[str], rows: List[List[str]], scroll: bool = False) -> str:
 
 
 def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signals: Optional[List[dict]] = None,
-          initial: float = 10_000.0, now_ms: Optional[int] = None) -> str:
+          initial: float = 10_000.0, now_ms: Optional[int] = None, title: str = "new_BOT — дашборд") -> str:
     now_ms = now_ms or int(time.time() * 1000)
     holdout = pf.get("holdout_check") or {}
     full = pf.get("backtest_portfolio_oos") or {}
@@ -457,8 +457,8 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
            ("market", "Анализ рынка")]
     nav = [(a, b) for a, b in nav if a != "signals" or signals is not None]
     return (f'<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
-            f'<title>new_BOT — дашборд</title><style>{CSS}</style></head><body>'
-            f'<header><h1>new_BOT — дашборд</h1><div class="mut">Обновлено {utc(now_ms)} UTC · режим: paper · '
+            f'<title>{esc(title)}</title><style>{CSS}</style></head><body>'
+            f'<header><h1>{esc(title)}</h1><div class="mut">Обновлено {utc(now_ms)} UTC · режим: paper · '
             f'Bitget USDT-M {esc(pf.get("granularity", "4H"))}</div></header>'
             f'<nav>{"".join(f"<a href=#{a}>{b}</a>" for a, b in nav)}</nav><main>{"".join(P)}'
             f'<section class="warn"><b>Важно.</b> Все цифры бэктеста — история, а не обещание. Бумажный счёт не отправляет '
@@ -478,7 +478,7 @@ def main() -> int:
     ap.add_argument("--account", default="state/paper_account.json")
     ap.add_argument("--history", default="state/equity_history.json")
     ap.add_argument("--initial", type=float, default=10_000.0)
-    ap.add_argument("--out", default="site/index.html")
+    ap.add_argument("--out", default="site/index.html")\n    ap.add_argument("--title", default="new_BOT — дашборд")
     ap.add_argument("--record", action="store_true", help="append an equity snapshot to --history")
     ap.add_argument("--signals", action="store_true", help="fetch current signals (network)")
     a = ap.parse_args()
@@ -495,7 +495,7 @@ def main() -> int:
             print(f"signals unavailable: {e}", file=sys.stderr)
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w") as f:
-        f.write(build(pf, scan, load(a.curves, {}), acc, hist, signals, a.initial))
+        f.write(build(pf, scan, load(a.curves, {}), acc, hist, signals, a.initial, title=a.title))
     print(f"Saved {a.out}")
     return 0
 
