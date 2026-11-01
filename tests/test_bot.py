@@ -236,6 +236,8 @@ class TraderTests(unittest.TestCase):
             pos = broker.position("AAA")
             self.assertIsNotNone(pos, ev)
             self.assertEqual(pos.side, 1)
+            self.assertAlmostEqual(pos.entry, up.open[999], places=8)  # signal at 998, fill at next open 999
+            self.assertEqual(state.s["opened_bar"]["AAA"], up.ts[999])
             self.assertLess(pos.stop, pos.entry)
             # crash through the stop on the next bar -> paper stop fires, side locked, no re-entry
             crash = up.slice(0, 1001)
@@ -245,6 +247,22 @@ class TraderTests(unittest.TestCase):
             self.assertIsNone(broker.position("AAA"), ev)
             self.assertEqual(state.s["locks"]["AAA"], 1)
             self.assertLess(broker.equity(), 10_000)
+
+
+    def test_entry_candle_is_checked_against_initial_stop(self):
+        up = synthetic(1200, seed=5, drift=0.003, vol=0.01)
+        entry_data = up.slice(0, 1000)
+        entry_data.low[-1] = 0.01
+        pf = {"granularity": "4H", "risk": {"risk_pct": 0.01, "max_leverage": 2.0},
+              "sleeves": [{"symbol": "AAA", "strategy": "tsmom", "params": S.get("tsmom").default()}]}
+        with tempfile.TemporaryDirectory() as d:
+            broker = PaperBroker(os.path.join(d, "acct.json"), 10_000, ZERO)
+            state = State(os.path.join(d, "state.json"))
+            cycle(pf, broker, state, Limits(), fetch=lambda s, g, n: entry_data)
+            self.assertIsNone(broker.position("AAA"))
+            closes = [x for x in broker.s["history"] if x["action"] == "close"]
+            self.assertEqual(len(closes), 1)
+            self.assertEqual(closes[0]["reason"], "stop")
 
 
 class BitgetBrokerTests(unittest.TestCase):
@@ -307,6 +325,7 @@ class DashboardTests(unittest.TestCase):
         self.assertIn("+20.00", out)           # unrealized (110 - 100) * 2
         self.assertIn("+9.80", out)            # realized pnl net of the opening fee
         self.assertIn("ETHUSDT", out)
+        self.assertIn("Ожидание не нанесено", out)
 
     def test_record_replaces_recent_snapshot(self):
         import dashboard as dash

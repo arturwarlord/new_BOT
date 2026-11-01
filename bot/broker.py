@@ -40,7 +40,7 @@ class Broker:
 
     def equity(self) -> float: ...
     def position(self, symbol: str) -> Optional[Pos]: ...
-    def open(self, symbol: str, side: int, qty: float, price: float, stop: float) -> Optional[Pos]: ...
+    def open(self, symbol: str, side: int, qty: float, price: float, stop: float, entry_ts: Optional[int] = None) -> Optional[Pos]: ...
     def close(self, symbol: str, price: float, reason: str = "") -> None: ...
     def set_stop(self, symbol: str, stop: float) -> None: ...
     def prepare(self, symbol: str, leverage: int) -> None: ...
@@ -91,12 +91,12 @@ class PaperBroker(Broker):
         self.s["balance"] -= fee
         return fill, fee
 
-    def open(self, symbol, side, qty, price, stop):
+    def open(self, symbol, side, qty, price, stop, entry_ts=None):
         fill, fee = self._fill(symbol, side, qty, price, "open")
         # only candles that open after the last candle seen by sync() can hit the new stop
         self.s["positions"][symbol] = {"side": side, "qty": qty, "entry": fill, "stop": stop,
                                        "opened": int(time.time() * 1000),
-                                       "checked_ts": self.s.setdefault("seen_ts", {}).get(symbol, -1) + 1}
+                                       "checked_ts": entry_ts if entry_ts is not None else self.s.setdefault("seen_ts", {}).get(symbol, -1) + 1}
         self.s["marks"][symbol] = price
         self.s["history"].append({"t": int(time.time()), "symbol": symbol, "action": "open",
                                   "side": side, "qty": qty, "price": fill, "fee": fee, "stop": stop})
@@ -255,7 +255,7 @@ class BitgetBroker(Broker):
         except BitgetError as e:
             log.warning("set-leverage %s: %s", symbol, e)
 
-    def open(self, symbol, side, qty, price, stop):
+    def open(self, symbol, side, qty, price, stop, entry_ts=None):
         self._request("POST", "/api/v2/mix/order/place-order", body={
             "symbol": symbol, "productType": self.product_type, "marginMode": self.margin_mode,
             "marginCoin": self.margin_coin, "size": str(qty), "side": "buy" if side == 1 else "sell",

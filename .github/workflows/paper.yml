@@ -3,43 +3,57 @@ on:
   workflow_dispatch:
     inputs:
       reset:
-        description: "Start a fresh paper account"
+        description: "Start a fresh main paper account"
         type: boolean
         default: false
   schedule:
-    - cron: "2 */4 * * *"   # right after each 4H candle closes
+    - cron: "2 */4 * * *"
 permissions:
-  contents: write   # publishes the dashboard to the gh-pages branch
+  contents: write
 concurrency:
   group: paper-trading
   cancel-in-progress: false
 jobs:
   paper:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Restore paper account
+      - name: Restore paper accounts
         if: ${{ github.event.inputs.reset != 'true' }}
         uses: actions/cache/restore@v4
         with:
           path: state/
           key: paper-state-${{ github.run_id }}
           restore-keys: paper-state-
-      - name: One paper trading cycle (no real orders)
+      - name: Main paper trading cycle (no real orders)
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python trade.py --mode paper
           python paper_report.py >> "$GITHUB_STEP_SUMMARY"
-      - name: Build dashboard
+      - name: Isolated V2 paper trading cycle (0.5% risk, no real orders)
+        continue-on-error: true
+        run: |
+          python trade.py --mode paper \
+            --portfolio config/portfolio_v2_experiment.json \
+            --paper-account state/v2_paper_account.json \
+            --state-file state/v2_trader_paper.json
+      - name: Build main dashboard
         if: always()
         run: python dashboard.py --record --signals --out site/index.html
-      - name: Publish dashboard (gh-pages branch)
+      - name: Build V2 dashboard
+        if: always()
+        run: |
+          python dashboard.py --portfolio config/portfolio_v2_experiment.json \
+            --account state/v2_paper_account.json \
+            --history state/v2_equity_history.json \
+            --record --signals --title 'new_BOT — версия 2 (paper, риск 0.5%)' --out site/v2.html
+      - name: Publish dashboards (gh-pages branch)
         if: always()
         env:
           GH_TOKEN: ${{ github.token }}
@@ -50,14 +64,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -qm "dashboard $(date -u +%FT%TZ)"
+          git commit -qm "dashboards $(date -u +%FT%TZ)"
           git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: dashboard
-          path: site/index.html
-      - name: Save paper account
+          name: dashboards
+          path: |
+            site/index.html
+            site/v2.html
+      - name: Save paper accounts
         if: always()
         uses: actions/cache/save@v4
         with:

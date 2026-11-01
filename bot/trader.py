@@ -1,7 +1,4 @@
-"""Portfolio trader: turns the latest closed candles into target positions for every sleeve in
-config/portfolio.json and reconciles the broker with them. Same rules as the backtest engine:
-decisions on closed bars, stop on every position, no re-entry on the same side after a stop
-until the strategy changes its mind, ATR trailing stops that only ratchet."""
+"""Paper portfolio execution aligned with the backtest's close-signal/next-open fills."""
 from __future__ import annotations
 
 import datetime as dt
@@ -22,9 +19,9 @@ log = logging.getLogger("bot")
 
 @dataclass
 class Limits:
-    max_total_leverage: float = 3.0   # sum of all position notionals / equity
-    max_daily_loss: float = 0.05      # flatten everything and pause for the UTC day after this drawdown
-    history_days: int = 150           # candles fetched per cycle (warm-up for every strategy)
+    max_total_leverage: float = 3.0
+    max_daily_loss: float = 0.05
+    history_days: int = 150
 
 
 def load_portfolio(path: str = "config/portfolio.json") -> dict:
@@ -38,8 +35,8 @@ def load_portfolio(path: str = "config/portfolio.json") -> dict:
 class State:
     def __init__(self, path: str):
         self.path = path
-        self.s = {"locks": {}, "held": {}, "opened_bar": {}, "stops": {}, "day": None, "day_start_equity": None,
-                  "halted_day": None, "last_bar": {}}
+        self.s = {"locks": {}, "held": {}, "opened_bar": {}, "stops": {}, "day": None,
+                  "day_start_equity": None, "halted_day": None, "last_bar": {}}
         if os.path.exists(path):
             with open(path) as f:
                 self.s.update(json.load(f))
@@ -75,17 +72,47 @@ def decide(sleeve: dict, c) -> Decision:
 
 
 def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fetch=D.fetch_bitget) -> List[str]:
-    gran = pf.get("granularity", "4H")
-    risk = pf["risk"]
-    events: List[str] = []
-    s = state.s
-    today = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    """Use the penultimate candle for signals and the latest candle's open for execution.
 
-    candles = {}
+    The latest candle is already closed when Actions runs. Its open is the first executable
+    price after the previous candle's signal. Existing stops are updated from that previous
+    close before the latest candle is replayed for intrabar stop hits.
+    """
+    gran, risk, s = pf.get("granularity", "4H"), pf["risk"], state.s
+    events: List[str] = []
+    today = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
+    candles, decisions = {}, {}
+
+    # Load data and prepare decisions from the last completed signal candle.
     for sl in pf["sleeves"]:
-        c = fetch(sl["symbol"], gran, limits.history_days)
-        candles[sl["symbol"]] = c
-        ev = broker.sync(sl["symbol"], c)
+        sym = sl["symbol"]
+        c = fetch(sym, gran, limits.history_days)
+        candles[sym] = c
+        if len(c) < 2:
+            events.append(f"{sym}: waiting for a second candle to execute signals at next open")
+            continue
+        decisions[sym] = decide(sl, c.slice(0, len(c) - 1))
+
+    # Preserve equity at the signal close for sizing; the execution candle may gap.
+    signal_equity = broker.equity()
+
+    # A trailing stop calculated at the signal candle close must protect the following candle.
+    for sl in pf["sleeves"]:
+        sym = sl["symbol"]
+        d = decisions.get(sym)
+        pos = broker.position(sym)
+        if d and pos is not None and d.trail_dist is not None and is_valid(d.trail_dist):
+            ns = d.last_close - pos.side * d.trail_dist
+            known = [x for x in (pos.stop, s["stops"].get(sym)) if x is not None]
+            cur = (max(known) if pos.side == 1 else min(known)) if known else None
+            if cur is None or (ns > cur if pos.side == 1 else ns < cur):
+                broker.set_stop(sym, ns)
+                s["stops"][sym] = ns
+                events.append(f"{sym}: trail stop -> {ns:g}")
+
+    # Replay the newly completed execution candle against stops before signal exits/entries.
+    for sym, c in candles.items():
+        ev = broker.sync(sym, c)
         if ev:
             events.append(ev)
 
@@ -98,8 +125,9 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
         return events
     if s["day_start_equity"] and equity < s["day_start_equity"] * (1 - limits.max_daily_loss):
         for sl in pf["sleeves"]:
-            if broker.position(sl["symbol"]):
-                broker.close(sl["symbol"], candles[sl["symbol"]].close[-1], "daily loss limit")
+            sym = sl["symbol"]
+            if broker.position(sym):
+                broker.close(sym, candles[sym].close[-1], "daily loss limit")
         s["halted_day"] = today
         events.append(f"DAILY LOSS LIMIT: equity {equity:.2f} < {s['day_start_equity']:.2f} - "
                       f"{limits.max_daily_loss:.0%}; all positions closed, paused until tomorrow (UTC)")
@@ -107,72 +135,71 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
         return events
 
     def notional_open() -> float:
-        tot = 0.0
-        for sl in pf["sleeves"]:
-            p = broker.position(sl["symbol"])
-            if p:
-                tot += p.qty * candles[sl["symbol"]].close[-1]
-        return tot
+        return sum((p.qty * candles[sl["symbol"]].open[-1])
+                   for sl in pf["sleeves"] if (p := broker.position(sl["symbol"])) is not None)
 
+    # Equity for sizing is the equity at the signal close, before the execution candle's move.
+    sizing_equity = signal_equity
     for sl in pf["sleeves"]:
         sym = sl["symbol"]
-        c = candles[sym]
-        d = decide(sl, c)
+        c, d = candles[sym], decisions.get(sym)
+        if d is None:
+            continue
+        execution_price, execution_ts = c.open[-1], c.ts[-1]
         pos = broker.position(sym)
-        lock = s["locks"].get(sym, 0)
-        held = s["held"].get(sym, 0)
+        lock, held = s["locks"].get(sym, 0), s["held"].get(sym, 0)
         new_bar = s["last_bar"].get(sym) != d.last_ts
 
-        # position disappeared on the exchange (stop-loss / liquidation / manual) -> lock that side
         if pos is None and held:
             lock = held
             s["held"][sym] = held = 0
-            events.append(f"{sym}: position closed outside the bot, {('long', '', 'short')[1 - lock]} side locked")
+            events.append(f"{sym}: position closed outside the bot; side locked")
 
         target = d.target
         if lock and (target != lock or d.entry_event == lock):
             lock = 0
         if lock and target == lock and pos is None:
             target = 0
+
         if pos is not None and d.max_hold and target == pos.side:
             opened = s["opened_bar"].get(sym)
-            if opened is not None and sum(1 for t in c.ts if t >= opened) >= d.max_hold:
+            if opened is not None and sum(1 for t in c.ts if opened <= t <= d.last_ts) >= d.max_hold:
                 target, lock = 0, pos.side
         s["locks"][sym] = lock
 
+        if not new_bar:
+            continue
         if pos is not None and pos.side != target:
-            broker.close(sym, d.last_close, "signal")
-            events.append(f"{sym}: CLOSE {'long' if pos.side == 1 else 'short'} {pos.qty:g} @~{d.last_close:g} ({sl['strategy']})")
+            broker.close(sym, execution_price, "signal")
+            events.append(f"{sym}: CLOSE {'long' if pos.side == 1 else 'short'} @open {execution_price:g} ({sl['strategy']})")
             s["held"][sym] = 0
             pos = None
 
-        if pos is None and target != 0 and new_bar:
-            if not (is_valid(d.stop_dist) and d.stop_dist > 0):
-                continue
-            qty = equity * risk["risk_pct"] / d.stop_dist
-            qty = min(qty, equity * risk["max_leverage"] / d.last_close)
-            room = max(limits.max_total_leverage * equity - notional_open(), 0.0)
-            qty = min(qty, room / d.last_close)
-            qty = broker.round_qty(sym, qty, d.last_close)
-            if qty <= 0:
-                events.append(f"{sym}: wanted {'long' if target == 1 else 'short'} but size is below the minimum / leverage cap")
+        if pos is None and target != 0:
+            if not (is_valid(d.stop_dist) and d.stop_dist > 0 and execution_price > 0):
+                events.append(f"{sym}: skipped entry; invalid stop distance or execution price")
             else:
-                stop = d.last_close - target * d.stop_dist
-                broker.prepare(sym, int(risk["max_leverage"]) + 1)
-                broker.open(sym, target, qty, d.last_close, stop)
-                s["held"][sym] = target
-                s["opened_bar"][sym] = d.last_ts
-                s["stops"][sym] = stop
-                events.append(f"{sym}: OPEN {'LONG' if target == 1 else 'SHORT'} {qty:g} @~{d.last_close:g} "
-                              f"stop {stop:g} ({sl['strategy']} {json.dumps(sl['params'])})")
-        elif pos is not None and d.trail_dist is not None and is_valid(d.trail_dist):
-            ns = d.last_close - pos.side * d.trail_dist
-            known = [x for x in (pos.stop, s["stops"].get(sym)) if x is not None]
-            cur = (max(known) if pos.side == 1 else min(known)) if known else None
-            if cur is None or (ns > cur if pos.side == 1 else ns < cur):  # stops only ratchet
-                broker.set_stop(sym, ns)
-                s["stops"][sym] = ns
-                events.append(f"{sym}: trail stop -> {ns:g}")
+                qty = sizing_equity * risk["risk_pct"] / d.stop_dist
+                qty = min(qty, sizing_equity * risk["max_leverage"] / execution_price)
+                room = max(limits.max_total_leverage * sizing_equity - notional_open(), 0.0)
+                qty = min(qty, room / execution_price)
+                qty = broker.round_qty(sym, qty, execution_price)
+                if qty <= 0:
+                    events.append(f"{sym}: wanted {'long' if target == 1 else 'short'} but size is below minimum / leverage cap")
+                else:
+                    stop = execution_price - target * d.stop_dist
+                    broker.prepare(sym, int(risk["max_leverage"]) + 1)
+                    broker.open(sym, target, qty, execution_price, stop, execution_ts)
+                    # The execution candle is already closed when this scheduled job runs.
+                    # Replay it now with the initial stop, before any later trailing update.
+                    entry_stop_event = broker.sync(sym, c)
+                    if entry_stop_event:
+                        events.append(entry_stop_event)
+                    s["held"][sym] = target
+                    s["opened_bar"][sym] = execution_ts
+                    s["stops"][sym] = stop
+                    events.append(f"{sym}: OPEN {'LONG' if target == 1 else 'SHORT'} {qty:g} @next-open {execution_price:g} "
+                                  f"stop {stop:g} ({sl['strategy']} {json.dumps(sl['params'])})")
         s["last_bar"][sym] = d.last_ts
 
     state.save()
@@ -180,7 +207,7 @@ def cycle(pf: dict, broker: Broker, state: State, limits: Limits = Limits(), fet
 
 
 def describe(pf: dict, fetch=D.fetch_bitget, history_days: int = 150) -> List[dict]:
-    """Read-only view of what every sleeve wants right now."""
+    """Read-only view of the latest fully closed candle's signals."""
     out = []
     for sl in pf["sleeves"]:
         c = fetch(sl["symbol"], pf.get("granularity", "4H"), history_days)
@@ -188,8 +215,7 @@ def describe(pf: dict, fetch=D.fetch_bitget, history_days: int = 150) -> List[di
         out.append({"symbol": d.symbol, "strategy": d.strategy, "params": sl["params"],
                     "target": {1: "long", -1: "short", 0: "flat"}[d.target],
                     "stop_if_entering_now": None if not is_valid(d.stop_dist) else d.last_close - d.target * d.stop_dist
-                    if d.target else None,
-                    "last_close": d.last_close,
+                    if d.target else None, "last_close": d.last_close,
                     "last_candle_utc": dt.datetime.fromtimestamp(d.last_ts / 1000, dt.timezone.utc).isoformat()})
     return out
 
