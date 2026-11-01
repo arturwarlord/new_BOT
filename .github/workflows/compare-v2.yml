@@ -1,5 +1,11 @@
 name: Compare portfolio V2 (same data)
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'compare_portfolios.py'
+      - 'config/portfolio*.json'
+      - '.github/workflows/compare-v2.yml'
   workflow_dispatch:
     inputs:
       days:
