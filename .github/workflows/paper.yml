@@ -1,5 +1,13 @@
 name: Paper trading (simulated account)
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/paper.yml'
+      - 'bot/**'
+      - 'config/portfolio*.json'
+      - 'dashboard.py'
+      - 'trade.py'
   workflow_dispatch:
     inputs:
       reset:
@@ -37,7 +45,6 @@ jobs:
           python trade.py --mode paper
           python paper_report.py >> "$GITHUB_STEP_SUMMARY"
       - name: Isolated V2 paper trading cycle (0.5% risk, no real orders)
-        continue-on-error: true
         run: |
           python trade.py --mode paper \
             --portfolio config/portfolio_v2_experiment.json \
