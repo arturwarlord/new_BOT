@@ -258,7 +258,9 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
     full = pf.get("backtest_portfolio_oos") or {}
     sleeves = pf.get("sleeves", [])
     st = account_stats(acc, hist, initial)
-    exp_h = expectation(curves.get("holdout", []))
+    # The published holdout used a different sleeve set from the active portfolio.
+    # Never present it as the paper account expectation.
+    exp_h = None
     exp_f = expectation(curves.get("portfolio_oos", []))
     P = []
 
@@ -288,12 +290,11 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
         lo = [[t0 + d * DAY_MS, initial * (1 + exp_h["mu"] * d - 1.645 * exp_h["sd"] * math.sqrt(d))] for d in steps]
         hi = [[t0 + d * DAY_MS, initial * (1 + exp_h["mu"] * d + 1.645 * exp_h["sd"] * math.sqrt(d))] for d in steps]
         band = (lo, hi)
-    P.append("<h3>Факт против ожидания (по отложенной проверке бэктеста)</h3>")
-    P.append(line_chart([("Бумажный счёт", "#f5a623", eq_pts), ("~Ожидание (среднее)", "#4ea1ff", exp_line)],
-                        lambda v: f"{v:,.0f}".replace(",", " "), band=band, baseline=initial))
-    P.append('<p class="mut">Синяя зона — примерно 90% диапазон, в котором должен находиться счёт, если рынок '
-             'ведёт себя как в последние 180 дней бэктеста. Выход вниз за зону 2–4 недели подряд — повод '
-             'перепроверить стратегии, а не наращивать риск.</p>')
+    P.append("<h3>Динамика бумажного счёта</h3>")
+    P.append(line_chart([("Бумажный счёт", "#f5a623", eq_pts)],
+                        lambda v: f"{v:,.0f}".replace(",", " "), baseline=initial))
+    P.append('<p class="mut">Ожидание не нанесено: опубликованная отложенная проверка использовала другой набор монет и стратегий. '
+             'Сравнение с ней было бы некорректным. Сначала пересчитаем контрольный портфель с теми же слотами и параметрами.</p>')
 
     # positions
     pos_rows = []
@@ -346,9 +347,8 @@ def build(pf: dict, scan: dict, curves: dict, acc: dict, hist: List[dict], signa
         rows.append(r)
     P.append(table(["Срок", "Ожидание", "~90% диапазон", f"В USDT при {initial:,.0f}".replace(",", " "),
                     "Плюсовых периодов (история)", "Худшие 5% / медиана / лучшие 5% (история)"], rows))
-    P.append('<p class="mut">«Ожидание» и диапазон посчитаны по дневным колебаниям портфеля на <b>отложенных 180 днях</b> '
-             '(их не использовали при выборе). Колонки «история» — все отрезки такой длины во всём out-of-sample бэктесте; '
-             'они оптимистичнее, потому что портфель выбран как лучший. Это оценка, а не обещание.</p>')
+    P.append('<p class="mut">Ожидание для текущего портфеля временно скрыто: holdout в сохранённом отчёте рассчитан для другого состава. '
+             'Исторические окна ниже относятся к ранее выбранному OOS-портфелю, а не являются прогнозом текущего счёта.</p>')
     if exp_h and exp_f:
         P.append(f'<p class="mut">Средний дневной результат: отложенная проверка {pct(exp_h["mu"])} '
                  f'(σ {pct(exp_h["sd"], False)}), вся история {pct(exp_f["mu"])} (σ {pct(exp_f["sd"], False)}).</p>')
